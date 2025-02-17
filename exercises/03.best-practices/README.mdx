@@ -1,17 +1,17 @@
 # Best practices
 
-Tools are important. But the most important things often transcend tools. Tools can give you a solid foundation but it's still _your task_ to write great tests.
+While tools provide a solid foundation, the most important aspects of testing transcend them. Writing great tests remains _your task_.
 
-In this exercise block, we will go through some of the absolutely essential best practices when it comes to writing integration tests. I've already spoken a lot about the [true purpose of testing](https://www.epicweb.dev/the-true-purpose-of-testing), [what makes a great test](https://www.epicweb.dev/the-golden-rule-of-assertions), and why you want to [write tests that fail](https://www.epicweb.dev/writing-tests-that-fail). All of those still apply. Today, I would like to add another layer onto the onion of your test quality. Today, let's talk about how to achieve fantastic integration tests.
+In this exercise block, we will go through some of the absolutely essential best practices when it comes to writing integration tests. I've written extensively about the [true purpose of testing](https://www.epicweb.dev/the-true-purpose-of-testing), [what makes a great test](https://www.epicweb.dev/the-golden-rule-of-assertions), and why you want to [write tests that fail](https://www.epicweb.dev/writing-tests-that-fail). All of those still apply. Today, let's add another layer to your testing expertise by focusing on how to write fantastic integration tests.
 
 ## What we will cover
 
-There's countless practices, patterns, and pieces of advices when it comes to testing. Some general, others extremely specific. For this block, I've trimmed all of those down to the following topics:
+There are countless practices, patterns, and tips when it comes to testing. Some general, others extremely specific. For this block, I've trimmed all of these down to the following topics:
 
 1. **Accessibility selectors**. Write tests that find HTML elements the same way your users find them.
 1. **User events**. Write tests that interact with HTML elements the same way your users do.
 1. **Network mocking**. How to mock network requests in your tests with [Mock Service Worker](https://mswjs.io/).
 1. **Element presence**. How to test elements presence, especially when something must _not_ appear in the UI.
-1. **Page navigation**. Testing page transition (i.e. routing) on the integration level.
+1. **Page navigation**. Testing page transitions (i.e. routing) at the integration test level.
 
-If you nail these five, you already establish a strong starting point for the quality of your tests. I think it's time we explored them.
+Mastering these five areas will give you a strong foundation for writing quality tests. Let's explore them.
