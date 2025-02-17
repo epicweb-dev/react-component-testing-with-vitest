@@ -1,14 +1,14 @@
 # Multiple workspaces
 
-The way you have Vitest configured right now will run _all tests_ using Browser Mode. This may not be what you want, especially if you are using Vitest for unit testing or integration testing in Node.js in the same project that needs in-browser component tests as well.
+Our current Vitest configuration runs _all tests_ in Browser Mode. This isn't ideal when you need to run different types of tests in the same project - like unit tests in Node.js alongside browser-based component tests.
 
-You can fix this by introducing _different workspaces_ for differnt types of tests. In fact, I think this is just the right task for you...
+You can fix this by introducing _different workspaces_ for different types of tests. In fact, I think this is just the right task for you...
 
-👨‍💼 In this one, you will expand on the Vitest configuration to support running multiple types of tests in the same project. This will be a multi-step process to make sure you have the Vitest and TypeScript configured correctly for your tests.
+👨‍💼 In this one, you will expand the Vitest configuration to support running multiple types of tests in the same project. This will be a multi-step process to make sure you have Vitest and TypeScript configured correctly for your tests.
 
-🐨 First, update <InlineFile file="vite.config.ts">`vite.config.ts`</InlineFile> to list multiple [workspaces](https://main.vitest.dev/guide/workspace.html#configuration). Define one for unit tests and the other for component tests.
+🐨 First, update <InlineFile file="vite.config.ts">`vite.config.ts`</InlineFile> to list multiple [workspaces](https://main.vitest.dev/guide/workspace.html#configuration). Define one for unit tests and another for component tests.
 
-🐨 Next, rename <InlineFile file="tsconfig.test.json">`tsconfig.test.json`</InlineFile> to `tsconfig.test.browser.json`. This TypeScript configuration will apply only to the component tests now. Update its `include` to target `**/*.browser.test.ts*` files:
+🐨 Next, rename <InlineFile file="tsconfig.test.json">`tsconfig.test.json`</InlineFile> to `tsconfig.test.browser.json`. This TypeScript configuration will only apply to the component tests now. Update its `include` setting to target `**/*.browser.test.ts*` files:
 
 ```json filename=tsconfig.test.browser.json remove=2 add=3
 {
@@ -17,7 +17,7 @@ You can fix this by introducing _different workspaces_ for differnt types of tes
 }
 ```
 
-🐨 To have proper type-checking in unit tests, create a new <InlineFile file="tsconfig.test.unit.json">`tsconfig.test.unit.json`</InlineFile> file and list there the properties necessary for the unit tests. You can use this as an example:
+🐨 To have proper type-checking in unit tests, create a new <InlineFile file="tsconfig.test.unit.json">`tsconfig.test.unit.json`</InlineFile> file and add the necessary properties for unit tests. You can use this as an example:
 
 ```json filename=tsconfig.test.unit.json
 {
@@ -49,6 +49,6 @@ You can fix this by introducing _different workspaces_ for differnt types of tes
 }
 ```
 
-🐨 Finally, rename the existing `file-preview.test.tsx` component test to `file-preview.browser.test.tsx` to be picked up by the proper workspace in Vitest.
+🐨 Finally, rename the existing `file-preview.test.tsx` component test to `file-preview.browser.test.tsx` to be included in the correct Vitest workspace.
 
 See you on the other side once you're done to go through each step in more detail.
