@@ -4,7 +4,7 @@ There are two types of test setup you can have: _global_ and _local_. The global
 
 I will start by creating a `vitest.browser.setup.ts` file. The naming here doesn't matter that much, but I like to keep Vitest-related files starting with `vitest.*`.
 
-In that file, I will import the assets I want to apply to all rendered components:
+In that file, I will import the assets I want to include when rendering any component:
 
 ```ts filename=vitest.browser.setup.ts add=1
 import './src/index.css'
