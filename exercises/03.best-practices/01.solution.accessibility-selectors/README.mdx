@@ -17,7 +17,7 @@ I'm going to start by locating the discount code input on the page. This one:
 />
 ```
 
-A user would find this input by its _label text_ because they would see that it says "Discount code" above that input. When creating the `<DiscountCode />` component, I've made sure to have an accessible layout by associating a `label` element with the input by its `id`:
+A user would find this input by its _label text_ because they would see that it says "Discount code" above that input. When creating the `<DiscountCode />` component, I've made sure to have accessible markup by associating a `label` element with the input by its `id`:
 
 ```tsx filename=discount-code-form.tsx highlight=2,8
 <label
@@ -120,7 +120,7 @@ But there are also elements that don't. Some derive their accessible name from t
 
 And then there are elements that don't need accessible name at all. Those include `<section>`, `<p>`, `<span>`, or images that are purelly illustrational.
 
-<callout-success>Select elements by their accessible name if it has one, otherwise select it by their text content. Do not add ARIA role attributes or accessible names where they are not needed! The goal is always accessible layout first, tests second. Never the other way around. See [Naming techniques](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/#naming_techniques) for more details.</callout-success>
+<callout-success>Select elements by their accessible name if it has one, otherwise select it by their text content. Do not add ARIA role attributes or accessible names where they are not needed! The goal is always accessible markup first, tests second. Never the other way around. See [Naming techniques](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/#naming_techniques) for more details.</callout-success>
 
 ### Text content
 
