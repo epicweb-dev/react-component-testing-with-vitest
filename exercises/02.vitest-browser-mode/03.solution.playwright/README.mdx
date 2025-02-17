@@ -1,15 +1,10 @@
 # Playwright
 
-Problem: Using the default `preview` provider in Vitest is great to try things out, but it relies on Chromium being installed in your system (and also isn't that powerful). To have a proper setup, and be able to run it in CI, we need to define an explicit provider. Let's use Playwright.
-
-0. Explain why we want `playwright` and not the default `preview` browser provider (works better for CI, more powerful since it taps into the Chrome DevTools Protocol).
-1. Install `playwright`.
-1. Run `npx playwright install --with-deps chromium` and configure your repo so this runs automatically (this can be quite annoying). Also, install just the browsers we need, not all of them, to save time on CI.
-1. Update the Vitest configuration to use `playwright` as the browser automation tool.
+Problem: Using the default `preview` provider in Vitest is great to try things out, but it relies on Chromium being installed on your system (and also isn't that powerful). To have a proper setup, and be able to run it in CI, we need to define an explicit provider. Let's use Playwright.
 
 ---
 
-Let's start from installing `playwright`:
+Let's start by installing `playwright`:
 
 ```sh nonumber
 npm i -D playwright
@@ -18,10 +13,10 @@ npm i -D playwright
 Playwright needs browser executables to be present on your machine to run. In this workshop, I am using Chromium as my browser of choice, so I can install just that particular browser by running the following command:
 
 ```sh nonumber
-npx playwright install --with-dewps chromium
+npx playwright install --with-deps chromium
 ```
 
-> 🦉 You can provide the Playwright CLI with the explicit browsers you want to be installed. This reduces its footprint in the system by fetching only the browsers you need.
+> 🦉 You can provide the Playwright CLI with a specific browser you want to be installed. This reduces its footprint in the system by fetching only the browsers you need.
 
 The next step is to tell Vitest to use Playwright as the browser provider for component tests. In `vite.config.ts`, set the `test.browser.provider` option to `'playwright'`:
 
@@ -65,4 +60,4 @@ And, finally, let's update the type definitions for the assertion matchers to be
 }
 ```
 
-This will make sure that the locators, user events, and matchers are correctly annotated.
+This will make sure that the locators, user events, and matchers are correctly typed.
