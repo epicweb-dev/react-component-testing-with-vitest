@@ -26,7 +26,7 @@ Once you do all this, you will spot that the `*.css` imports fail to resolve in 
 Cannot find module './src/index.css' or its corresponding type declarations.ts(2307)
 ```
 
-🐨 To fix this, we need to pull some of the Vite built-in type definitions to help us. At the top of the `vitest.browser.setup.ts` file, add the following type reference comment:
+🐨 To fix this, we need to pull in some of the Vite built-in type definitions to help us. At the top of the `vitest.browser.setup.ts` file, add the following type reference comment:
 
 ```ts nonumber
 /// <reference path="./src/vite-env.d.ts" />
