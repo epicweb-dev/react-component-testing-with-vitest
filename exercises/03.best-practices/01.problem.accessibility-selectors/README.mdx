@@ -1,10 +1,10 @@
 # Queries
 
-One of the primary ways to achieve user-driven tests is to access and interact with the UI elements in the same manner user would. Your users don't know HTML or CSS so they don't locate elements on the page by their class names or `test-id` attributes. Instead, they find the things they need by their _roles_ and _names_ (this is true for visually-impared users as well).
+One of the primary ways to achieve user-driven tests is to access and interact with the UI elements in the same way the user would. Your users don't know HTML or CSS so they don't locate elements on the page by their class names or `test-id` attributes. Instead, they find the things they need by their _roles_ and _names_ (this is true for visually-impared users as well).
 
 The way you access different elements in tests matters a lot. It can vary from giving you a ton of value and implicit accessibility assurance to forcing you to change your tests all the time because they are riddled with implementation details.
 
-<callout-info>When testing, do what users do.</callout-info>
+<callout-info>When testing, do what your users would do.</callout-info>
 
 👨‍💼 In this exercise, your task is to write a simple integration test for a new React component called <InlineFile file="./src/discount-code-form.tsx">
-`<DiscountCodeForm />`</InlineFile>. And what do you know it—this component is a _form_! This means plenty of elements for you to locate. Use locators like `.getByRole()` and `.getByLabelText()`, and write assertions that make sure all the necessary form elements are present on the page.
+`<DiscountCodeForm />`</InlineFile>. And what do you know—this component is a _form_! This means plenty of elements for you to locate. Use locators like `.getByRole()` and `.getByLabelText()`, and write assertions that make sure all the necessary form elements are present on the page.
