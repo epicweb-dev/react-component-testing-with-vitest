@@ -74,7 +74,7 @@ The first workspace include the configuration for running unit tests:
 - `exclude` does the opposite of `include`, listing the file patterns to _ignore_. Since my browser tests also end with `*.test.ts`, I need to exclude them not to be confused with unit tests;
 - `environment` controls the test environment used for this workspace. I want my unit tests to run in Node.js, so I provide `'node'` as the enivornment here.
 
-> :owl: Notice that each workspace lists Vitest configuration starting from the root (e.g. includes the `test` key again). This is handy because this means each workspace can have a different set of Vite options to handle the test files (e.g. list different `plugins`).
+> :owl: Notice that each workspace lists Vitest configuration starting from the root by including the `test` key again. This is handy because each workspace can have a different set of Vite options and `plugins` for different test files.
 
 Similarly, here's the workspace for the browser (component) tests:
 
@@ -98,17 +98,17 @@ Similarly, here's the workspace for the browser (component) tests:
 },
 ```
 
-Here, I'm naming this workspace `'browser'` and configuring it to include only `*.browser.test.ts(x)` test files. Those will be my component tests. For the rest of it, I simply moved the existing `test.browser` configuration under this workspace and left it as-is.
+Here, I'm naming this workspace `'browser'` and configuring it to include only `*.browser.test.ts(x)` test files. These will be my component tests. For the rest of the configuration, I simply moved the existing `test.browser` configuration under this workspace and left it as-is.
 
 ## TypeScript
 
-The next step is to deal with TypeScript. One of the most overlooked aspects of using TypeScript is that you often need _multiple configurations_ within the same project. Your source code, unit tests, integration tests, or test utilities are all written in TypeScript but have different concerns that may require different types.
+The next step is to deal with TypeScript. One of the most overlooked aspects of using TypeScript is that you often need _multiple configurations_ within the same project. Your source code, unit tests, integration tests, and test utilities are all written in TypeScript but have different concerns that may require different types.
 
 > :scroll: If you want to dive deeper into the reason behing using multiple TypeScript configurations and how to do that properly, read my post called [One Thing Nobody Explained To You About TypeScript](https://kettanaito.com/blog/one-thing-nobody-explained-to-you-about-typescript).
 
-In our project, unit and component tests have a different set of type requirements because they run in different environments. This means I need to introduce two separate configurations: `tsconfig.test.unit.json` and `tsconfig.test.browser.json` to address those differences.
+In our project, unit and component tests have a different set of type requirements because they run in different environments. This means I need to introduce two separate configurations to address these differences: `tsconfig.test.unit.json` and `tsconfig.test.browser.json`.
 
-Let's start with the unit tests.
+Let's start with the unit tests:
 
 ```json filename=tsconfig.test.unit.json
 {
@@ -129,7 +129,7 @@ Similar to how I've configured Vitest workspaces to apply only to specific file 
 "types": ["node", "vitest/globals"]
 ```
 
-This include Node.js type definitions (`@types/node`) and Vitest global types (e.g. `test` and `expect`) for my unit tests. Since I don't have the Node.js types installed, I need to add them as a dependency to the project:
+This includes Node.js type definitions (`@types/node`) and Vitest global types (e.g. `test` and `expect`) for my unit tests. Since I don't have the Node.js types installed, I need to add them as a dependency to the project:
 
 ```sh nonumber
 npm i -D @types/node
@@ -151,7 +151,7 @@ Next, I rename the existing `tsconfig.test.json` to `tsconfig.test.browser.json`
 
 ## Test commands
 
-To make it easier to run specific types of tests, I will modify `package.json` to include the new `test:unit` and `test:integration` commands:
+To make it easier to run specific types of tests, I will modify `package.json` to add `test:unit` and `test:integration` commands:
 
 ```json
 {
@@ -170,4 +170,4 @@ There are multiple ways to group different types of tests in the same project:
 - **By file name**. This is the one I'm using this exercise, adopting `*.test.ts` for unit tests and `*.browser.test.tsx` for integration tests;
 - **By directory name**. For example, you can keep unit tests in `./src` while integration tests in `./tests`
 
-The only wrong choice here is the one not followed consistently. You can choose whichever approach makes more sense in your circumstance, but I don't recommend mixing them in the same app.
+The choice is up to you — I only recommend you stick to one approach and don't mix them in your app.
