@@ -36,7 +36,7 @@ This will result in the following component tree being rendered:
 
 Now that my tested component has a parent router, it can access all the router-related information, like the `useNavigate()` hook without issues.
 
-<callout-success>Don't be hesitant to create wrappers to suit the needs of individual tests. Custom wrappers is not something you usually reuse.</callout-success>
+<callout-success>Don't be hesitant to create wrappers to suit the needs of individual tests. Custom wrappers are not something you usually reuse.</callout-success>
 
 ## Testing links
 
@@ -75,16 +75,16 @@ Let me explain.
 
 Any navigation on the web consists of the source and the destination. In the case of our `<DiscountCodeForm />`, the source is the "Back to cart" link while the destination is the cart page. In other words, _there are two pages involved_ (thus the navigation).
 
-**But we aren't testing pages here**. We are testing components. It is crucial we keep in mind what's within our component's power and what is not.
+**But we aren't testing pages here**. We are testing components. It is crucial we keep in mind what's within our component's control and what is not.
 
-So, what is in our component's power?
+Let's focus on what our component can actually control:
 
 - Render the link;
 - Make sure it leads to the right page.
 
-What gets rendered on that page or whether the page exists at all isn't the responsibility of `<DiscountCodeForm />`. It cannot be responsible for the other end of this navigation, and so it cannot include it in its tests.
+What gets rendered on that page or whether the page exists at all isn't the responsibility of `<DiscountCodeForm />`. It cannot be responsible for the other end of this navigation, and so we should not include it in its tests.
 
-Ask yourself this: Do I want the `<DiscountCodeForm />` tests to fail if something is off on the cart page? You really don't. You would want the cart page tests to fail in that case, wouldn't you?
+Think about it: should a `<DiscountCodeForm />` test fail because of issues on the cart page? Of course not. That's what the cart page's own tests are for.
 
 > This once again brings me to 📜 [The Golden Rule of Assertions](https://www.epicweb.dev/the-golden-rule-of-assertions), proving how invaluable it is when making decisions around your tests.
 
@@ -92,8 +92,8 @@ Ask yourself this: Do I want the `<DiscountCodeForm />` tests to fail if somethi
 
 But where should you test the actual navigation then?
 
-<callout-success>Test the actual navigation in end-to-end tests, and test is _implicitly_.</callout-success>
+<callout-success>Test the actual navigation in end-to-end tests, and test it _implicitly_.</callout-success>
 
-Getting from one page to another is a part of the user's journey. Naturally, both counterparts of the navigation would have to exist for that journey to complete. This is where you act as the user, click on links or buttons, and assert what page they land on.
+Getting from one page to another is a part of the user's journey. Naturally, both sides of the navigation would have to exist for that journey to complete. This is where you act as the user, click on links or buttons, and assert which page they land on.
 
-**Testing navigation on the integration level is unreliable**. There may be other components in the router tree that affect the navigation. For example, some other route may render a `position:fixed` element with incorrect styles that would obstruct the link you are trying to click, making it inaccessible. You won't catch that rendering components in isolation. You will catch that in an end-to-end test.
+**Testing navigation on the integration level is unreliable**. There may be other components in the router tree that affect things. For example, some other route may render a `position:fixed` element with incorrect styles that would obstruct the link you are trying to click, making it inaccessible. You won't catch that when rendering components in isolation, but you will in an end-to-end test.
