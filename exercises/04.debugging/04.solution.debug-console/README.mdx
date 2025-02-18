@@ -6,11 +6,11 @@ First, I will try to run the `matchPath()` function with the same arguments as i
 matchPath({ path: '/dashboard', end: false }, location.pathname)
 ```
 
-The console will print me the match object as the returned value of running this function:
+The console will print me the match object as the returned value from running this function:
 
 ![A Visual Studio Code window with the Debug console open. An object is printed as the result of calling the match path function like it is used by the component.](/assets/04-04-debug-console-01.png)
 
-Now _this_ is a solid confirmation that the `/dashboard` path matches the current URL unexpectedly. Knowing this, I can try fixing the code right in the Debug console!
+Now _this_ is a solid confirmation that the `/dashboard` path unexpectedly matches the current URL. Knowing this, I can try fixing the code right in the Debug console!
 
 My hunch is that the path matching is not strict, and I can confirm it by running the same `matchPath()` function again but now with the `end` option set to `true`:
 
