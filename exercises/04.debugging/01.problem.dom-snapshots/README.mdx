@@ -5,8 +5,8 @@ Your component tests consist of two parts:
 - A rendered UI;
 - Test actions interacting with that UI and asserting on the result.
 
-While you can observe and analyze certain actions in a test, it's a bit tricker when it comes to debugging the rendered markup. For once, your UI components are not a 1-1 representation of the final DOM. There can be side effects and user actions that result in the elements appearing or disappearing on the page. Looking at the component's code alone won't cut it.
+While you can observe and analyze certain actions in a test, it's a bit tricker when it comes to debugging the rendered markup. Firstly, your UI components are not a 1-1 representation of the final DOM. There can be side effects and user actions that result in the elements appearing or disappearing on the page. Looking at the component's code alone won't cut it.
 
 Sometimes you just need to take a look at the current state of the DOM _during_ the test. This is where DOM snapshots come in!
 
-👨‍💼 In this exercise, your task is to **track down and fix a nasty bug** that found its way into the code. To do that, you will observe the rendered markup as it changes from one test action to another, using a `debug()` utility function. Complete the instructions in the <InlineFile file="./src/tic-tac-toe.browser.test.tsx">`tic-tac-toe.browser.test.tsx`</InlineFile> test suite and have the tests passing via `npm test`.
+👨‍💼 In this exercise, your task is to **track down and fix a nasty bug** that found its way into the code. To do that, you will observe the rendered markup as it changes from one test action to another, using a `debug()` utility function. Complete the instructions in the <InlineFile file="./src/tic-tac-toe.browser.test.tsx">`tic-tac-toe.browser.test.tsx`</InlineFile> test suite and get the tests passing via `npm test`.
