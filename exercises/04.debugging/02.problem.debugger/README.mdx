@@ -1,6 +1,6 @@
 # Debugger
 
-Let's craked it up a notch. Observing the rendered DOM is useful, but not as much as being able to _step through_ what our test is doing. For that, we are going to need a `debugger`.
+Let's crank it up a notch. Observing the rendered DOM is useful, but not as much as being able to _step through_ what our test is doing. For that, we are going to need a `debugger`.
 
 In JavaScript, if you place a `debugger` statement anywhere in your code, the engine running that code will pause its execution and let you "look around", then proceed to the next debugger checkpoint, if you have any.
 
@@ -69,7 +69,7 @@ This configuration tells Visual Studio Code how to launch your application (in o
 
 Then, we combine these two tasks in a single `compound` task called `Debug Vitest Browser`.
 
-> 🦉 I am also setting the `env.DEBUG` variable to `'true'` to run my browser tests in a "headfull" mode conditionally. That way, I will see what's going on on the page while debugging my tests. Take a look at <InlineFile file="./vite.config.ts">`vite.config.ts`</InlineFile> to see how that variable is referenced.
+> 🦉 I am also setting the `env.DEBUG` variable to `'true'` to conditionally run my browser tests in a "headful" mode. That way, I can see what's going on on the page while debugging my tests. Take a look at <InlineFile file="./vite.config.ts">`vite.config.ts`</InlineFile> to see how that variable is referenced.
 
 Once this is done, you can start your browser tests in a debug mode by openning the "Run and debug" window (Shift+Cmd+D) and run the "Debug Vitest Browser" task from the dropdown at the top:
 
