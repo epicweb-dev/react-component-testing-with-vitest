@@ -1,6 +1,6 @@
 # Debugger
 
-Using debugger allows me to step through my test wherever and whenever I need to. It would be really helpful to pause after my test marks a cell in the `<TicTacToe />` component. I can do that by placing a `debugger` statement after the corresponding actions in the test:
+Using the debugger allows me to step through my test wherever and whenever I need to. However, it would be really helpful to pause after my test marks a cell in the `<TicTacToe />` component. I can do that by placing a `debugger` statement after the corresponding actions in the test:
 
 ```tsx filename=tic-tac-toe.browser.test.tsx nonumber nocopy highlight=5,8,11
 test('places cross marks in a horizontal line', async () => {
@@ -28,10 +28,10 @@ Every `debugger` statement _creates a breakpoint_. Once the JavaScript engine re
 
 ## `--inspect-brk` vs `--inspect`
 
-One more noteworthy thing it the flags we are using to create a debugging process, specifically, the `--inspect-brk` flag.
+One more noteworthy thing are the flags we are using to create a debugging process, specifically, the `--inspect-brk` flag.
 
 You may provide both `--inspect` and `--inspect-brk` flags to Vitest, but they behave differently. `--inspect-brk` will make Vitest _automatically add a breakpoint before every `render()`_, while `--inspect` will not.
 
 ## What's next?
 
-With the debugging configured around out test suite, it's time to explore how you can get even more value out of your newly-found time stopping superpowers.
+With debugging configured around our test suite, it's time to explore how you can get even more value out of your newly-found time stopping superpowers.

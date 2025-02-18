@@ -37,11 +37,11 @@ And now I will write a regular assertion with `expect.element()` using the `.not
 await expect.element(discountText).not.toBeInTheDocument()
 ```
 
-So why does this work?
+So how does this work?
 
 It's due to the retry mechanism built-in into `expect.element()`, which automatically makes Vitest `waitFor` the given assertion. Even if it takes time to remove the `discountText` element from the page, our test will wait until that happens and throw if it doesn't.
 
-> 🦉 You can configure the retry options on `expect.element()` by providing them as the second argument to that function:
+> 🦉 You can configure the retry options on `expect.element()` by providing them as the second argument to the function:
 >
 > ```ts nonumber
 > await expect.element(locator, { interval, timeout })

@@ -1,15 +1,15 @@
 # Debugging tests
 
-It's natural that you want the tests you write to pass. But in reality, the value of tests comes from [📜 when they fail](https://www.epicweb.dev/writing-tests-that-fail). That means the safeguard of automation you put there is catching bugs or regressions. That means one less broken user experience shipped to production. It's working.
+While we all want our tests to pass, the true value of testing emerges [📜 when they fail](https://www.epicweb.dev/writing-tests-that-fail). A failing test means our safeguards are working - catching bugs and regressions before they reach production. That's exactly what we want.
 
-But nobody likes a failing test, and twice so if you are tasked with fixing one.
+But nobody likes a failing test, more so if you are tasked with fixing one.
 
-In this exercise block, you will discover the debugging techniques that turn failed tests from a task you put off until it's too late to a pleasant and even fun experience. The next time you've got a tricky test on your hands, you will have the right tools to employ.
+In this exercise block, you will discover the debugging techniques that turn failed tests from a task you put off until it's too late to a pleasant and even fun experience. The next time you've got a tricky test on your hands, you will be equipped with the right tools to tackle it.
 
 ## Debugging techniques
 
-There's plenty of ways to debug JavaScript code, and most of them still apply when debugging tests as well. You have likely tried isolating the behaviors, experimenting with the input, following stack traces, desperately spamming `console.log()` everywhere—the good stuff. Today is not about that.
+There are plenty of ways to debug JavaScript code, and most of them also apply when debugging tests. You have likely tried isolating the behaviors, experimenting with the input, following stack traces, desperately spamming `console.log()` everywhere—the good stuff. Today is not about that.
 
 Today, I would love to talk about specific techniques for debugging your in-browser tests. The things you will use _on top_ of the general arsenal of tools you already know and love. Techniques specific to Vitest Browser Mode or those that require extra steps to be used in the browser.
 
-Sounds exciting? Let's go.
+Sound exciting? Let's go.

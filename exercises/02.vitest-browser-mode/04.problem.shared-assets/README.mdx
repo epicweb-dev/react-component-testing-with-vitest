@@ -26,12 +26,12 @@ Once you do all this, you will spot that the `*.css` imports fail to resolve in 
 Cannot find module './src/index.css' or its corresponding type declarations.ts(2307)
 ```
 
-🐨 To fix this, we need to pull some of the Vite built-in type definitions to help us. At the top of the `vitest.browser.setup.ts` file, add the following type reference comment:
+🐨 To fix this, we need to pull in some of the Vite built-in type definitions to help us. At the top of the `vitest.browser.setup.ts` file, add the following type reference comment:
 
 ```ts nonumber
 /// <reference path="./src/vite-env.d.ts" />
 ```
 
-Lastly, provide the path to the setup file in <InlineFile file="vite.config.ts">`vite.config.ts`</InlineFile> as the `setupFiles` value of a conrete browser instance (follow the instructions in the configuration file for more details).
+Lastly, provide the path to the setup file in <InlineFile file="vite.config.ts">`vite.config.ts`</InlineFile> as the `setupFiles` value of a concrete browser instance (follow the instructions in the configuration file for more details).
 
 Once you have it ready, run the tests again to see the `<FilePreview />` component reclaim its striking visuals ✨.

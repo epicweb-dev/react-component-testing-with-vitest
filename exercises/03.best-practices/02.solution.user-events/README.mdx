@@ -1,6 +1,6 @@
 # User events
 
-At its current state, our discount form component test gives you some value, but it can give much more. We don't create UI elements simply for them "to be" on the page. They are there so our users could interact with them, make them do something, help them achieve their tasks.
+In its current state, our discount form component test gives you some value, but it can give so much more. We don't create UI elements simply for them "to be" on the page. They are there so our users can interact with them, make them do something, and help them achieve their tasks.
 
 The main purpose of the discount form component is to apply the given discount code. _That_ is what has to be reflected in automated tests.
 
@@ -21,7 +21,7 @@ test('applies a discount code', async () => {
 	await expect.element(discountInput).toBeVisible()
 ```
 
-I intend to _interact_ with the `discountInput` element so asserting its visibility on the page becomes redundant. Its interactivity is _implied_ by the interaction. If this input is, say, not being rendered correctly, interacting with it will fail. This is called an _implicit assertion_.
+I intend to _interact_ with the `discountInput` element so asserting its visibility on the page is redundant. Its interactivity is _implied_ by the interaction. If this input is, say, not being rendered correctly, interacting with it will fail. This is called an _implicit assertion_.
 
 > 🦉 [Implicit assertions](https://www.epicweb.dev/implicit-assertions) are a great way to achieve more in tests while writing less.
 
@@ -35,11 +35,11 @@ test('applies a discount code', async () => {
 	await discountInput.fill('EPIC2025')
 ```
 
-The `.fill()` method accepts a _value_ to enter and returns a promise that resolves when the browser is done typing it in.
+The `.fill()` method accepts a _value_ to enter and returns a promise that resolves when the browser is finished typing it in.
 
 Now that the discount code has been entered, it's time to apply it.
 
-Much the same, I will drop the redundant visibility assertiom from the `applyDiscountCode` button, and replace it with the `.click()` interaction with that button:
+As above, I will drop the redundant visibility assertion from the `applyDiscountCode` button, and replace it with the `.click()` interaction with that button:
 
 ```tsx filename=discount-code-form.browser.test.tsx remove=10 add=11 nocopy
 test('applies a discount code', async () => {
@@ -70,7 +70,7 @@ My expectation here is derived from _how_ the applied discount code is displayed
 )
 ```
 
-So, in case the code has been successfully applied, I expect this paragraph to be visible on the page:
+Finally, when the code has been successfully applied, I expect this paragraph to be visible on the page:
 
 ```tsx filename=discount-code-form.browser.test.tsx add=13-15 nocopy
 test('applies a discount code', async () => {
@@ -95,7 +95,7 @@ This completes the test! 🎉
 
 ## Locator methods vs `userEvent`
 
-If you used React Testing Library in the past, you've likely been interacting with your components via the `userEvent` object from `@testing-library/user-event`. Vitest provides you a similar object from the `@vitest/browser/context` package as well:
+If you used React Testing Library in the past, you've likely been interacting with your components via the `userEvent` object from `@testing-library/user-event`. Vitest provides you a similar object from the `@vitest/browser/context` package:
 
 ```tsx nonumber highlight=1,7
 import { userEvent } from '@vitest/browser/context',

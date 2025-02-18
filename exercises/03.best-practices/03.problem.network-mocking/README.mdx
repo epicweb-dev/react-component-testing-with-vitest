@@ -1,28 +1,28 @@
 # Network mocking
 
-We've got quite far testing the `<DiscountCodeForm />` component but there's just one problem. The component has been a bit naive. It simply took the entered discount code and put it in internal state. That's not how things work in real life. In practice, it would likely send that code to some server to validate and apply. It would make a _network call_.
+So far, our `<DiscountCodeForm />` component has been handling discount codes in a simplified way — just storing them in internal state. In a real application, the component would need to validate and apply these codes through a server, making a _network call_.
 
-In fact, I went and refactored the discount code component to do just that! Now, submitting the form dispatches a `POST https://api.example.com/discount/code` request with the provided code. Only once the server sends back the confirmation will the component display the applied discount in the UI.
+In fact, I went and refactored the discount code component to do just that! Now, submitting the form dispatches a `POST https://api.example.com/discount/code` request with the provided code. Only when the server sends back the confirmation will the component display the applied discount in the UI.
 
 This poses a new challenge: that `POST` request _will actually happen during the test run_. That may be acceptable in end-to-end testing but never on the integration level.
 
 <callout-success>Always mock HTTP requests in integration tests.</callout-success>
 
-Leaving that request to fire during tests means that we are allowing the server's operability and behavior to influence the outcome of the test. This is a no-go as it violates :scroll: [The Golden Rule of Assertions](https://www.epicweb.dev/the-golden-rule-of-assertions):
+Leaving that request to fire during tests means that we are allowing the server's operability and behavior to influence the outcome of the test. This is a problem, as it violates :scroll: [The Golden Rule of Assertions](https://www.epicweb.dev/the-golden-rule-of-assertions):
 
 <callout-info>_A test must fail if, and only if, the intention behind the system is not met._</callout-info>
 
-In other words, our component can be functioning perfectly but the test may still fail if the server is down or having trouble processing the request. The responsibility of the integration test is to assert the client-side code we've written, and never the server-side one.
+In other words, even if our component works perfectly, the test could fail due to server issues. Integration tests should focus solely on client-side behavior, not server responses.
 
-You have to draw the line. You have to draw a :scroll: [Test boundary](https://www.epicweb.dev/what-is-a-test-boundary).
+You have to draw a line between these responsibilities. You have to draw a :scroll: [Test boundary](https://www.epicweb.dev/what-is-a-test-boundary).
 
-When it comes to the network, you employ API mocking tools to establish that boundary and help your tests focus on the right thing, turning the dynamic and unpredictable thing such as network to fixed and given.
+When it comes to the network, you employ API mocking tools to establish this boundary and help your tests focus on the right thing, turning the dynamic and unpredictable thing such as network to fixed and given.
 
-In this exercise, we would have toto intercept and mock the `POST https://api.example.com/discount/code` that our component makes during tests. We will use the library called [Mock Service Worker](https://mswjs.io/) (MSW) to do that.
+In this exercise, we have to intercept and mock the `POST https://api.example.com/discount/code` request that our component makes during tests. We will use the library called [Mock Service Worker](https://mswjs.io/) (MSW) to do that.
 
 ## Using MSW with Vitest Browser Mode
 
-Integrating MSW with Vitest Browser Mode is a little different from the usual browser integration so let's go throuigh it together. Follow the instructions below.
+Integrating MSW with Vitest Browser Mode is a little different from the usual browser integration so let's go through it together. Follow the instructions below.
 
 ### Installation and setup
 
@@ -190,7 +190,7 @@ export const test = testBase.extend({
 })
 ```
 
-> :owl: Passing `auto: true` to a fixture will make Vitest initialize it _automatically_, even if it's not explicitly referenced in the test.
+> :owl: Passing `auto: true` to a fixture will make Vitest initialize it _automatically_, even if it's not explicitly referenced in a test.
 
 With the setup finally done, let's move on to describing the network.
 
@@ -202,7 +202,7 @@ With the setup finally done, let's move on to describing the network.
 import { http, HttpResponse } from 'msw'
 ```
 
-Now is the turn to _describe the network_ you want. In MSW, you do that using functions called [Request handlers](https://mswjs.io/docs/concepts/request-handler) that are responsible for two things: intercepting requests and deciding how to handle them.
+Now is your turn to _describe the network_ you want. In MSW, you do that using functions called [Request handlers](https://mswjs.io/docs/concepts/request-handler) that are responsible for two things: intercepting requests and deciding how to handle them.
 
 🐨 In `src/mocks/handlers.ts`, export an array called `handlers` and declare your first request handler for the `POST https://api.example.com/discount/code` request in it:
 
@@ -214,7 +214,7 @@ export const handlers = [
 ]
 ```
 
-This request handler will intercept any matching requests and execute the callback function you've provided as the second argument. That function—also called a _response resolver_—doesn't do anything thought! Let's fix that.
+This request handler will intercept any matching requests and execute the callback function you've provided as the second argument. That function—also called a _response resolver_—doesn't do anything, though! Let's fix that.
 
 Our component expects a response from the server to have the following shape:
 
@@ -230,7 +230,7 @@ Our component expects a response from the server to have the following shape:
 
 Since the `code` data comes from the client, let's read the intercepted request's body to retrieve the sent discount code.
 
-🐨 In the response resolver function, access the `request` property on the argument object to the response resolver and read the reqest's body ...
+🐨 In the response resolver function, access the `request` property on the argument object to the response resolver and read the request's body:
 
 ```ts filename=src/mocks/handlers.ts add=7-8
 import { http, HttpResponse } from 'msw'
