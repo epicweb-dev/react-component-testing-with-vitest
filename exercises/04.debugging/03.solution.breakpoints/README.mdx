@@ -133,30 +133,30 @@ Received:
 
 Looks like the current page link that gets rendered is the "Dashboard" link and not "Analytics". This demands some debugging.
 
-Now, there's multiple ways you can approach debugging this. You can go through the source code or maybe inspect the DOM via the `debug()` method from `render()` or print all the active link elements. Any technique is a good technique if it helps you get to the bottom of the issue faster.
+Now, there are many ways you can approach debugging this. You can go through the source code or maybe inspect the DOM via the `debug()` method from `render()` or print all the active link elements. Any technique is good if it helps you get to the bottom of the issue faster.
 
-To give you more tools for debugging, I will approach this issue differently. If I take a look above the printed error in the terminal, I can spot this line:
+To teach you more tools for debugging, I will approach this issue differently. If I take a look above the printed error in the terminal, I see this line:
 
 ```
 Failure screenshot:
   - src/__screenshots__/main-menu.browser.test.tsx/----1.png
 ```
 
-Vitest takes screenshots of the page for every failed test case so you have some visual clue as to what is going on. Let's take a look at that screenshot:
+Vitest takes screenshots of the page for every failed test case to give you a visual clue about what is going on. Let's take a look at that screenshot:
 
 ![A screenshot of the page with the main menu component rendered. It shows two menu links as active—dashboard and analytics.](/assets/04-03-test-screenshot.png)
 
-Hah! Both "Dashboard" and "Analytics" are treated as currently active navigation link.
+Aha! Both "Dashboard" and "Analytics" are treated as currently active navigation links.
 
 > 🦉 While it's not forbidden to have multiple `aria-current="page"` elements at the same time, it is generally advised by the [WAI-ARIA specification](https://w3c.github.io/aria/#aria-current) to "only mark **one** element as current".
 
-The fact that the "Analytics" menu item is marked as current is correct, that's what I expect. It's the "Dashboard" that's likely off here. It would be great to stop the time and look around when that menu item is getting rendered.
+The fact that the "Analytics" menu item is marked as current is correct, that's what I expect. It's the "Dashboard" that's likely wrong here. It would be great to stop the time and look around when that menu item is getting rendered.
 
 That's a great use case for a breakpoint!
 
 But if I add a breakpoint in `<MenuItemsList />`, it will trigger on _every menu item_ that gets rendered. This will force me to step through irrelevant items before I get to the one I want, wasting my time.
 
-Instead, I will use a _conditional breakpoint_. It's like a regular breakpoint but it will only "activate" when a certain condition is met. What's great about this kind of breakpoints is that I can use expressions, accessing anything within the scope to write my condition.
+Instead, I will use a _conditional breakpoint_. It's like a regular breakpoint but it will only "activate" when a certain condition is met. What's great about these kind of breakpoints is that I can use expressions, accessing anything within the scope to write my condition.
 
 ![A screenshot of Visual Studio Code. The context menu of the gutter is open and the "Add Conditional Breakpoint" menu item is selected](/assets/04-03-conditional-breakpoint-01.png)
 
@@ -193,4 +193,4 @@ const isActive = matchPath(
 )
 ```
 
-Now you know how to harvest the power of conditional breakpoints to debug your React components or any JavaScript code in general. Use it wisely!
+Now you know how to harness the power of conditional breakpoints to debug your React components or any JavaScript code in general. Use it wisely!

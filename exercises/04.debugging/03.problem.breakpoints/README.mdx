@@ -1,8 +1,8 @@
 # Breakpoints
 
-Placing a `debugger` statement anywhere in your code or test is not the only way to create a breakpoint. In fact, you might've noticed that putting the `debugger` in our test makes us _modify that test_!
+Placing a `debugger` statement anywhere in your code or test is not the only way to create a breakpoint. In fact, you might've noticed we have to _modify our test_ to add the `debugger` statement!
 
-That isn't nice. Instead, you can add a breakpoint through your IDE.
+That isn't ideal. You can add a breakpoint through your IDE instead:
 
 1. Locate the line of code you want to set a breakpoint at;
 1. Either click on the red circle on the gutter next to that line or right-click the gutter and select "Add a breakpoint":
@@ -11,7 +11,7 @@ That isn't nice. Instead, you can add a breakpoint through your IDE.
 
 > 🦉 Note that adding a breakpoint on a line will pause the execution **before** that line runs, not after. If you want to pause after a certian action, put a breakpoint after it in the code.
 
-👨‍💼 In this exercise, I will have a few tasks for you.
+👨‍💼 In this exercise, I have a few tasks for you:
 
-1. Replace the `debugger` statements in the <InlineFile file="./src/tic-tac-toe-browser.test.tsx">`./src/`tic-tac-toe-browser.test.tsx`</InlineFile> with breakpoints set in your IDE. Run the tests in the debug mode to verify that breakpoints actually stop the test run where you want them to.
+1. Replace the `debugger` statements in the <InlineFile file="./src/tic-tac-toe-browser.test.tsx">`./src/`tic-tac-toe-browser.test.tsx`</InlineFile> with breakpoints set in your IDE. Run the tests in debug mode to verify that breakpoints actually stop the test run where you want them to.
 1. Complete the test case in <InlineFile file="./src/main-menu.browser.test.tsx">`./src/`main-menu.browser.test.tsx`</InlineFile>. This is a new component rendering a menu in our app. It looks simple enough but there's something odd about those active links... Once you finish the test, run it in the debug mode and try to see how you can use conditional breakpoints to get to the root cause of the issue.
