@@ -55,7 +55,7 @@ test('displays a warning for legacy discount codes', async ({
 	// to appear, notifying the user about the legacy discount code.
 	// 💰 await expect.element(locator).toHaveTextContent(content)
 	// 💰 page.getByRole('alert')
-	// 💰 '"LEGA2000" is a legacy code. Discount amount halfed.'
+	// 💰 '"LEGA2000" is a legacy code. Discount amount halved.'
 })
 
 test('displays an error when fetching the discount fails', async ({

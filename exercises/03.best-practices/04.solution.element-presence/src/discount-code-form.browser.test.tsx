@@ -51,7 +51,7 @@ test('displays a warning for legacy discount codes', async ({ worker }) => {
 		.toBeVisible()
 	await expect
 		.element(page.getByRole('alert'))
-		.toHaveTextContent('"LEGA2000" is a legacy code. Discount amount halfed.')
+		.toHaveTextContent('"LEGA2000" is a legacy code. Discount amount halved.')
 })
 
 test('displays an error when fetching the discount fails', async ({

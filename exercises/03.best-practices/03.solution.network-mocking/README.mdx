@@ -58,7 +58,7 @@ And, finally, one remaining assertion for the warning message regarding the use 
 ```tsx filename=discount-code-form.browser.test.tsx
 await expect
 	.element(page.getByRole('alert'))
-	.toHaveTextContent('"LEGA2000" is a legacy code. Discount amount halfed.')
+	.toHaveTextContent('"LEGA2000" is a legacy code. Discount amount halved.')
 ```
 
 > :owl: Since the legacy code warning is a `<p>` text element that doesn't have an accessible name, I am relying on the `.toHaveTextContent()` matcher to both narrow down the locator and assert on the message displayed to the user.

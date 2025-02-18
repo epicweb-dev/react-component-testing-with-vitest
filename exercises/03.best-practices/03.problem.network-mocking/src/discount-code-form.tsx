@@ -93,7 +93,7 @@ export function DiscountCodeForm() {
 				dispatch({ type: 'success', discount })
 
 				if (discount.isLegacy) {
-					notify(`"${code}" is a legacy code. Discount amount halfed.`)
+					notify(`"${code}" is a legacy code. Discount amount halved.`)
 				}
 			})
 			.catch((error) => {
