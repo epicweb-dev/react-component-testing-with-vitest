@@ -2,7 +2,7 @@
   "type": "module",
   "name": "exercises_04.debugging_03.solution.breakpoints",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4000",
     "test": "vitest"
   },
   "dependencies": {

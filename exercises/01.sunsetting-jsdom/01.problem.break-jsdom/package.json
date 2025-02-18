@@ -2,7 +2,7 @@
   "type": "module",
   "name": "exercises_01.sunsetting-jsdom_01.problem.break-jsdom",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4000",
     "test": "vitest"
   },
   "dependencies": {

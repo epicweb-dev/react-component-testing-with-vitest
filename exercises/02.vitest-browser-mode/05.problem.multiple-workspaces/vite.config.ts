@@ -1,5 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
+// 🐨 Import `defaultConfig` from `vitest/config`
+// 💰 import { foo } from 'bar'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
@@ -14,11 +16,19 @@ export default defineConfig({
 	//
 	// 🐨 In the unit test workspace, set `globals` to true
 	// and `environment` to "node".
+	// 💰 globals: true
+	// 💰 environment: 'node'
 	//
-	// 🐨 Finally, declare `include` and `exclude` properties
-	// that decide which test suites to run.
-	// Use the "**/*.test.ts" pattern for `include`
-	// and "**/*.browser.test.ts(x)?" pattern for `exclude.
+	// 🐨 Add the `include` property and set it to an array
+	// with the only entry "**/*.test.ts".
+	//
+	// 🐨 Since "**/*.test.ts" will match ALL tests, exclude
+	// the browser tests by providing the `exclude` property
+	// and including the browser test pattern there.
+	// 🦉 Vitest workspaces override the default configuration,
+	// which means that the `exclude` array must include the
+	// default values to ignore tests from `node_modules`, for example.
+	// 💰 exclude: [...defaultConfig.exclude, '**/*.browser.test.ts(x)?']
 	//
 	// 🐨 Now, switch to the second entry in the `workspace`
 	// array. There, give it the following properties:

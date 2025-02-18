@@ -2,7 +2,7 @@
   "type": "module",
   "name": "exercises_04.debugging_01.problem.dom-snapshots",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4000",
     "test": "vitest"
   },
   "dependencies": {

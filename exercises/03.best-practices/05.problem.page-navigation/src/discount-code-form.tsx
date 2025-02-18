@@ -1,6 +1,10 @@
-import { useReducer, type FormEventHandler } from 'react'
+import { useReducer, useState, type FormEventHandler } from 'react'
 import { Link } from 'react-router'
-import { toast } from 'sonner'
+
+interface Notification {
+	type: 'error' | 'warning'
+	text: string
+}
 
 export interface Discount {
 	code: string
@@ -66,6 +70,12 @@ export function DiscountCodeForm() {
 	const [state, dispatch] = useReducer(discountFormReducer, {
 		submitting: false,
 	})
+	const [notification, setNotification] = useState<Notification>()
+
+	const notify = (text: string, type: Notification['type'] = 'warning') => {
+		setNotification({ type, text })
+		setTimeout(() => setNotification(undefined), 5000)
+	}
 
 	const handleApplyDiscount: FormEventHandler<HTMLFormElement> = async (
 		event,
@@ -77,13 +87,14 @@ export function DiscountCodeForm() {
 		const code = data.get('discountCode')
 
 		if (!code) {
-			toast.error('Missing discount code')
+			notify('Missing discount code', 'error')
 			return
 		}
 
 		if (typeof code !== 'string') {
-			toast.error(
+			notify(
 				`Expected discount code to be a string but got ${typeof code}`,
+				'error',
 			)
 			return
 		}
@@ -93,11 +104,11 @@ export function DiscountCodeForm() {
 				dispatch({ type: 'success', discount })
 
 				if (discount.isLegacy) {
-					toast.warning(`"${code}" is a legacy code. Discount amount halved.`)
+					notify(`"${code}" is a legacy code. Discount amount halved.`)
 				}
 			})
 			.catch(() => {
-				toast.error('Failed to apply the discount code')
+				notify('Failed to apply the discount code', 'error')
 				dispatch({ type: 'idle' })
 			})
 	}
@@ -113,7 +124,7 @@ export function DiscountCodeForm() {
 		await removeDiscount(code)
 			.catch((error) => {
 				console.error(error)
-				toast.error('Failed to remote the discount code')
+				notify('Failed to remove the discount code', 'error')
 			})
 			.finally(() => {
 				dispatch({ type: 'idle' })
@@ -183,6 +194,15 @@ export function DiscountCodeForm() {
 					</p>
 				</form>
 			)}
+
+			{notification ? (
+				<p
+					role="alert"
+					className={`animation-slide animate-slide-in fixed bottom-5 right-5 rounded-lg border px-5 py-2.5 font-medium ${notification.type === 'error' ? 'border-red-800/20 bg-red-200' : 'border-yellow-800/20 bg-yellow-200'}`}
+				>
+					{notification.text}
+				</p>
+			) : null}
 		</section>
 	)
 }

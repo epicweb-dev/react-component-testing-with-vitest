@@ -2,7 +2,7 @@
   "type": "module",
   "name": "exercises_02.vitest-browser-mode_01.problem.installation-and-setup",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4000",
     "test": "vitest"
   },
   "dependencies": {

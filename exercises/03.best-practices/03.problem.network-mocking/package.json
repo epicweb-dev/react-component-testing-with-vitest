@@ -2,7 +2,7 @@
   "type": "module",
   "name": "exercises_03.best-practices_03.problem.network-mocking",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4000",
     "test": "vitest"
   },
   "dependencies": {

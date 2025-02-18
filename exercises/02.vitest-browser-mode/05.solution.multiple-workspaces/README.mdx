@@ -12,9 +12,10 @@ Workspaces are listed in the `test.workspace` property in your Vitest config, an
 
 I will define two workspaces:
 
-```ts filename=vite.config.ts add=10-16,19-34
+```ts filename=vite.config.ts add=11-17,20-35
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
@@ -26,7 +27,7 @@ export default defineConfig({
 					name: 'unit',
 					globals: true,
 					include: ['**/*.test.ts'],
-					exclude: ['**/*.browser.test.ts(x)?'],
+					exclude: [...configDefaults.exclude, '**/*.browser.test.ts(x)?'],
 					environment: 'node',
 				},
 			},
