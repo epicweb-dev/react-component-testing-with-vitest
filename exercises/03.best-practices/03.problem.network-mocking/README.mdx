@@ -1,5 +1,7 @@
 # Network mocking
 
+<EpicVideo url="https://www.epicweb.dev/workshops/react-component-testing-with-vitest/best-practices/network-mocking" />
+
 So far, our `<DiscountCodeForm />` component has been handling discount codes in a simplified way — just storing them in internal state. In a real application, the component would need to validate and apply these codes through a server, making a _network call_.
 
 In fact, I went and refactored the discount code component to do just that! Now, submitting the form dispatches a `POST https://api.example.com/discount/code` request with the provided code. Only when the server sends back the confirmation will the component display the applied discount in the UI.
