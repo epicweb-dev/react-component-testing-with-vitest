@@ -1,5 +1,5 @@
-import { TicTacToe } from './tic-tac-toe.js'
+import { MainMenu } from './main-menu.js'
 
 export function App() {
-	return <TicTacToe />
+	return <MainMenu />
 }
