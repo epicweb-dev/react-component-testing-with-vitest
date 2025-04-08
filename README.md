@@ -10,7 +10,7 @@
 <div align="center">
   <a
     alt="Epic Web logo with the words Deployed Version"
-    href="https://epicweb-dev-react-component-testing-with-vitest.fly.dev/"
+    href="https://react-component-testing-with-vitest.epicweb.dev/"
   >
     <img
       width="300px"
