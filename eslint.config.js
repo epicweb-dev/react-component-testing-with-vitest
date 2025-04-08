@@ -9,6 +9,7 @@ export default [
 			'no-unused-vars': 'off',
 			'import/order': 'off',
 			'import/consistent-type-specifier-style': 'off',
+			'vitest/no-standalone-expect': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
 			'@typescript-eslint/no-floating-promises': 'off',
 		},
