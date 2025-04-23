@@ -2,4 +2,42 @@
 
 <EpicVideo url="https://www.epicweb.dev/workshops/react-component-testing-with-vitest/workshop-introduction/intro-to-react-component-testing-with-vitest" />
 
-Hi! Welcome to the React Component Testing workshop!
+Hi! 👋 You've arrived at the React Component Testing workshop. Before you lies a long journey that has an ambitious destination—to teach you how to test your React components _in the actual browser_. Now, I'm not talking about end-to-end tests you already have and love. No.
+
+Today, we are diving into _component-level testing_, bringing along new tools and technologies, such as Vitest Browser Mode, as well as revisiting and updating some of the best practices around React component testing.
+
+My name is Artem and I've been testing React components for almost a decade now. I've used tools like React Testing Library and JSDOM to help me do that. I trust you've done just the same. Believe me when I say that the Browser Mode in Vitest is a _game-changer_ when it comes to component testing. It's the missing piece that can finally elevate your tests from browser-like environments to the actual browser runtime. This means more reliable, resilient, and useful tests through and through.
+
+Today marks the day you bring your React component tests to the absolutely new level.
+
+## Exercises
+
+Component testing is a vast area of topics and patterns to explore. Whether you're coming to this workshop as someone who has never written a component test before or someone who's got thousands of tests behind them, I've structured this material so it would work for you.
+
+Let's have an overview of the exercise blocks you will be going through.
+
+### Sunsetting JSDOM
+
+You start from the most important part—understanding why you're moving your tests from a browser-like environment (e.g. JSDOM) to the real browser. And you will learn why in the best way possible: by experiencing the shortcomings of browser-like environments firsthand.
+
+### Vitest Browser Mode
+
+Next, you will learn how to install, configure, and use Vitest Browser Mode. You will peek behind the scenes and discover the technical difference in how JSDOM and the Browser Mode run your React tests. Equipped with that knowledge, you are going to refactor the component test you wrote earlier from JSDOM to the Browser Mode, and see how your test changes dramatically while, seemingly, not changing at all.
+
+And as a cherry on top, I will share with you some common setup recipes for efficient component testing, like using different browser automation providers, including shared assets, and using Vitest to its fullest.
+
+### Best practices
+
+We simply cannot talk about component testing without going through the best practices. But it won't be a repetition of what you already know because you will explore how moving your tests to the real browser affects those best practices, unlocks new tools for you and deprecates the others you will no longer need.
+
+You will write tests from the user's perspective, locating elements on the page like your users (or their assistive technology) would do, and interacting with them in the same, implementation-detail-free manner. After that, you will conclude by learning how to set up and use API mocking in your tests, discover how some of the new Vitest APIs make your life easier, and revise the best practices of testing page navigation and routing.
+
+### Debugging
+
+In the last exercise block, we will go through what I find to be largely ignored when testing components. _Debugging_. You will apply some of my most favorite techniques of debugging component tests (and components!) both in-browser and right in your IDE. I'll show you how to observe the state of the DOM, stop the JavaScript execution with debugger, and become a time-traveling magician with breakpoints.
+
+By the end of this block, you will have the tools _and_ confidence to debug any failing component test.
+
+## Going through the workshop
+
+As usual, this is an Epic Web workshop, and you will be getting your mind and hands busy with the number of exercises I've tailored for you. I am excited to guide you through this journey and see you learn new things, discover new APIs, and finally get more value out of your component tests. Let's go!
