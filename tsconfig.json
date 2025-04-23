@@ -41,10 +41,10 @@
       "path": "exercises/02.vitest-browser-mode/05.solution.multiple-workspaces"
     },
     {
-      "path": "exercises/03.best-practices/01.problem.accessibility-selectors"
+      "path": "exercises/03.best-practices/01.problem.queries"
     },
     {
-      "path": "exercises/03.best-practices/01.solution.accessibility-selectors"
+      "path": "exercises/03.best-practices/01.solution.queries"
     },
     {
       "path": "exercises/03.best-practices/02.problem.user-events"

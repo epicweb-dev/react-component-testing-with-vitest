@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "exercises_03.best-practices_01.problem.accessibility-selectors",
+  "name": "exercises_03.best-practices_01.problem.queries",
   "scripts": {
     "dev": "vite",
     "test": "vitest",
