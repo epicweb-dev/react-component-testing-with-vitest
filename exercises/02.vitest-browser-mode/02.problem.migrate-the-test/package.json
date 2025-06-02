@@ -15,10 +15,10 @@
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/browser": "^3.0.7",
+    "@vitest/browser": "^3.2.0",
     "tailwindcss": "^4.0.11",
     "vite": "^6.2.0",
-    "vitest": "^3.0.7",
-    "vitest-browser-react": "^0.0.4"
+    "vitest": "^3.2.0",
+    "vitest-browser-react": "^0.2.0"
   }
 }
