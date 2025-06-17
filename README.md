@@ -29,7 +29,7 @@
 
 ## Prerequisites
 
-You don't have to have any prior experience with Vitest or Vitest Broweser Mode
+You don't have to have any prior experience with Vitest or Vitest Browser Mode
 to complete this workshop.
 
 - **A basic experience with TypeScript is required.**
