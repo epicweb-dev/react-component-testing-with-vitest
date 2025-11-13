@@ -87,9 +87,6 @@
     },
     {
       "path": "exercises/04.debugging/03.solution.breakpoints"
-    },
-    {
-      "path": "exercises/05.extras/01.problem.vitest-4.0"
     }
   ]
 }
