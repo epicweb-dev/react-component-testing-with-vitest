@@ -1,0 +1,63 @@
+# Migrating to Vitest 4.0
+
+With [Vitest 4.0](https://github.com/vitest-dev/vitest/releases/tag/v4.0.0), the Browser Mode is out of experimental! :tada: But that's not the only thing that has changed. In this exercise, you will go through all the breaking changes related to the Browser Mode and learn how to migrate to them in your projects.
+
+<callout-success>Feel free to take a look at the [Vitest 4.0 migration guide](https://vitest.dev/guide/migration.html#vitest-4) for the detailed instructions related to all the changes in the new version.</callout-success>
+
+## Browser Mode Breaking changes
+
+### Dependencies
+
+You no longer need to install the `@vitest/browser` package. The Browser Mode comes built-in into Vitest itself.
+
+```sh
+npm remove @vitest/browser
+```
+
+### Imports
+
+You should now import the `page` object directly from the `vitest` package (its `/browser` export):
+
+```ts remove=1 add=2 nocopy
+-import { page } from '@vitest/browser/context'
++import { page } from 'vitest/browser'
+```
+
+### Providers
+
+Browser automation providers now have to be installed as separate dependencies. This is done to simplify provider options and their type-safety.
+
+For example, to use the Playwright provider, install the following package:
+
+```sh
+npm i @vitest/browser-playwright
+```
+
+The integration of browser providers in your `vitest.config.ts` has also changed. You should now pass the imported provider directly as the value of the `test.browser.provider` property. Any previous launch/connect/context provider options migrate from `test.browser.instances` to the provider function call.
+
+```ts remove=8,12-14 add=17-21
+// Import the provider package directly.
++import { playwright } from '@vitest/browser-playwright'
+
+export default defineConfig({
+  test: {
+    browser: {
+      enabled: true,
+      provider: 'playwright',
+      instances: [
+        {
+          browser: 'chromium',
+          context: {
+            reduceMotion: 'reduce',
+          },
+        },
+      ]
+      provider: playwright({
+        contextOptions: {
+          reducedMotion: 'reduce',
+        },
+      }),
+    },
+  },
+})
+```
