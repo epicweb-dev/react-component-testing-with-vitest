@@ -76,7 +76,7 @@ export default defineConfig({
 
 ## Configure TypeScript
 
-The last thing that remains is to make sure TypeScript sees the Vitest globals, browser context types, and matcher types.
+The last thing that remains is to make sure TypeScript sees the Vitest globals and browser context types. The matcher types are referenced from `vite-env.d.ts`.
 
 First, I will remove the `import '@testing-library/jest-dom/vitest'` import we previously had in the test:
 
@@ -84,7 +84,7 @@ First, I will remove the `import '@testing-library/jest-dom/vitest'` import we p
 import '@testing-library/jest-dom/vitest'
 ```
 
-Finally, confirm that `tsconfig.test.json` includes `vitest/globals`, `@vitest/browser/context`, and `@vitest/browser/matchers` in `compilerOptions.types`:
+Finally, confirm that `tsconfig.test.json` includes `vitest/globals` and `@vitest/browser/context` in `compilerOptions.types`:
 
 ```json filename=tsconfig.test.json add=9
 {
@@ -92,7 +92,7 @@ Finally, confirm that `tsconfig.test.json` includes `vitest/globals`, `@vitest/b
 	"include": ["src/**/*", "src/**/*.test.ts*"],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/context", "@vitest/browser/matchers"]
+		"types": ["vitest/globals", "@vitest/browser/context"]
 	}
 }
 ```

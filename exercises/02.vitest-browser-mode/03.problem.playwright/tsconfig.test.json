@@ -5,8 +5,7 @@
 	"compilerOptions": {
 		"types": [
 			"vitest/globals",
-			"@vitest/browser/context",
-			"@vitest/browser/matchers"
+			"@vitest/browser/context"
 		]
 	}
 }
