@@ -4,11 +4,9 @@
 	"exclude": [],
 	"compilerOptions": {
 		"types": [
-			"vitest/globals",
-			// 💣 Remove the default browser matcher types.
-			"@vitest/browser/matchers"
+			"vitest/globals"
 
-			// 🐨 Instead, include the matcher types from Playwright.
+			// 🐨 Add the Playwright browser provider types.
 			// 💰 "@vitest/browser/providers/playwright"
 		]
 	}

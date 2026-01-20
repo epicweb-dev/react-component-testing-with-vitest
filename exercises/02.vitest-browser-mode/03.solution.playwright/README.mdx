@@ -41,7 +41,7 @@ export default defineConfig({
 })
 ```
 
-And, finally, let's update the type definitions for the assertion matchers to be those from Playwright in `tsconfig.test.json`:
+And, finally, let's add the Playwright browser provider types in `tsconfig.test.json`:
 
 ```json filename=tsconfig.test.json remove=9 add=10
 {
@@ -52,7 +52,6 @@ And, finally, let's update the type definitions for the assertion matchers to be
 		"module": "preserve",
 		"types": [
 			"vitest/globals",
-			"@vitest/browser/matchers",
 			"@vitest/browser/providers/playwright"
 		]
 	}

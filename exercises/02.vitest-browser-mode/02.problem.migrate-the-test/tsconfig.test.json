@@ -3,6 +3,6 @@
 	"include": ["src/**/*", "src/**/*.test.ts*"],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/matchers"]
+		"types": ["vitest/globals"]
 	}
 }
