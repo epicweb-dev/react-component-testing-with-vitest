@@ -30,10 +30,10 @@ test('displays the preview card', () => {
 
 ## Element locators
 
-Previously, I used the `screen` object from RTL to find elements in the virtual DOM. When using Vitest Browser Mode, I can now locate elements (and interact with them) using the `page` object from `vitest/browser` instead:
+Previously, I used the `screen` object from RTL to find elements in the virtual DOM. When using Vitest Browser Mode, I can now locate elements (and interact with them) using the `page` object from `@vitest/browser/context` instead:
 
 ```tsx filename=file-preview.test.tsx add=1 highlight=8-9
-import { page } from 'vitest/browser'
+import { page } from '@vitest/browser/context'
 import { render } from 'vitest-browser-react'
 import { FilePreview } from './file-preview.tsx'
 

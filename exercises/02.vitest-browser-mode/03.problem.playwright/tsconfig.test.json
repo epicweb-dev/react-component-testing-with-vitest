@@ -7,7 +7,7 @@
 			"vitest/globals"
 
 			// 🐨 Add the Vitest browser context types.
-			// 💰 "vitest/browser"
+			// 💰 "@vitest/browser/context"
 		]
 	}
 }

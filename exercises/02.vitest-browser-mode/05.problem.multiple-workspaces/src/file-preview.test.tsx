@@ -1,4 +1,5 @@
-import { page } from 'vitest/browser'
+import '@vitest/browser/matchers'
+import { page } from '@vitest/browser/context'
 import { render } from 'vitest-browser-react'
 import { FilePreview } from './file-preview'
 

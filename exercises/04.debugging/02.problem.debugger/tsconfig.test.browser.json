@@ -8,6 +8,6 @@
 	],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "vitest/browser"]
+		"types": ["vitest/globals", "@vitest/browser/context"]
 	}
 }

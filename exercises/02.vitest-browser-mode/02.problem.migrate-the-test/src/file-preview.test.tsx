@@ -1,6 +1,7 @@
+import '@vitest/browser/matchers'
 // 💣 Remove the import from `@testing-library/react`. You won't need it anymore.
 import { render, screen } from '@testing-library/react'
-// 🐨 Import `page` from 'vitest/browser'
+// 🐨 Import `page` from '@vitest/browser/context'
 // 💰 import { foo } from 'bar'
 //
 // 🐨 Import `render` from 'vitest-browser-react'.
