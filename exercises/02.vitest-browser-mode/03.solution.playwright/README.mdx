@@ -2,10 +2,10 @@
 
 <EpicVideo url="https://www.epicweb.dev/workshops/react-component-testing-with-vitest/vitest-browser-mode/playwright/solution" />
 
-Let's start by installing `playwright`:
+Let's start by installing `playwright` and the Vitest Playwright provider:
 
 ```sh nonumber
-npm i -D playwright
+npm i -D playwright @vitest/browser-playwright
 ```
 
 Playwright needs browser executables to be present on your machine to run. In this workshop, I am using Chromium as my browser of choice, so I can install just that particular browser by running the following command:
@@ -16,11 +16,12 @@ npx playwright install --with-deps chromium
 
 > 🦉 You can provide the Playwright CLI with a specific browser you want to be installed. This reduces its footprint in the system by fetching only the browsers you need.
 
-The next step is to tell Vitest to use Playwright as the browser provider for component tests. In `vite.config.ts`, set the `test.browser.provider` option to `'playwright'`:
+The next step is to tell Vitest to use Playwright as the browser provider for component tests. In `vite.config.ts`, import `playwright` from `@vitest/browser-playwright` and set `test.browser.provider` to `playwright()`:
 
 ```ts filename=vite.config.ts add=12
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { playwright } from '@vitest/browser-playwright'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -30,7 +31,7 @@ export default defineConfig({
 		globals: true,
 		browser: {
 			enabled: true,
-			provider: 'playwright',
+			provider: playwright(),
 			instances: [
 				{
 					browser: 'chromium',

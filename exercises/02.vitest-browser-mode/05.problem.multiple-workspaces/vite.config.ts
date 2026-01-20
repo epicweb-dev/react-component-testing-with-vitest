@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { playwright } from '@vitest/browser-playwright'
 // 🐨 Import `configDefaults` from `vitest/config`
 // 💰 import { foo } from 'bar'
 import react from '@vitejs/plugin-react'
@@ -55,7 +56,7 @@ export default defineConfig({
 		globals: true,
 		browser: {
 			enabled: true,
-			provider: 'playwright',
+			provider: playwright(),
 			instances: [
 				{
 					browser: 'chromium',

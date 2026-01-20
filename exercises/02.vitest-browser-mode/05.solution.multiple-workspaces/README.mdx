@@ -17,6 +17,7 @@ I will define two projects:
 ```ts filename=vite.config.ts add=12-18,21-36
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { playwright } from '@vitest/browser-playwright'
 import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -42,7 +43,7 @@ export default defineConfig({
 					include: ['**/*.browser.test.ts(x)?'],
 					browser: {
 						enabled: true,
-						provider: 'playwright',
+						provider: playwright(),
 						instances: [
 							{
 								browser: 'chromium',
@@ -91,7 +92,7 @@ Similarly, here's the project for the browser (component) tests:
 		include: ['**/*.browser.test.ts(x)?'],
 		browser: {
 			enabled: true,
-			provider: 'playwright',
+			provider: playwright(),
 			instances: [
 				{
 					browser: 'chromium',

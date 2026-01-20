@@ -44,6 +44,7 @@ In `vite.config.ts`, I will provide the path to this setup file as the value for
 ```ts filename=vite.config.ts add=16
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { playwright } from '@vitest/browser-playwright'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -53,7 +54,7 @@ export default defineConfig({
 		globals: true,
 		browser: {
 			enabled: true,
-			provider: 'playwright',
+		provider: playwright(),
 			instances: [
 				{
 					browser: 'chromium',
