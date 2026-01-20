@@ -1,4 +1,4 @@
-import '@vitest/browser/matchers'
+import type '@vitest/browser/matchers'
 import { page } from '@vitest/browser/context'
 import { render } from 'vitest-browser-react'
 import { DiscountCodeForm } from './discount-code-form'
