@@ -65,7 +65,7 @@ This configuration tells Visual Studio Code how to launch your application (in o
 
 - `Run Vitest Browser`, which will run our tests with a few special arguments:
   - `--inspect-brk`, which tells Node.js to spawn a debugger process. If provided, Vitest will arrange appropriate debugging mode in your browser provider automatically;
-  - `--browser`, which tells Vitest to run only the browser tests/workspaces;
+  - `--browser`, which tells Vitest to run only the browser tests/projects;
   - `--no-file-parallelism`, which forces Vitest to run our test cases in sequence (required for the debugger to work properly).
 - `Attach to Vitest Browser`, which will attach a Chome DevTools instance exposed by the browser tests to the built-in debugger in Visual Studio Code. This will allow you to control the debugging experience directly from your IDE.
 

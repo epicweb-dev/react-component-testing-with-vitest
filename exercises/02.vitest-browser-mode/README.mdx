@@ -36,6 +36,6 @@ There are also a few advantages I find in Vitest Browser Mode when compared to o
 
 - **Consistency**. Vitest can use your existing Vite configuration both for your app and for your tests. This means a smaller difference between your production and tested code, which is always a win.
 - **Component rendering model**. Running in the browser, your components can render similarly to how they are rendered in production. Vitest has a more [straightforward rendering flow](https://github.com/vitest-dev/vitest-browser-react/blob/1d6be8ca8d94bb2289b6260886f76a6e527c45f7/src/pure.tsx#L50) compared to [Playwright Component Testing](https://github.com/microsoft/playwright/blob/91f46bb5d057a284ff33def5802aba496033c030/packages/playwright-ct-core/src/mount.ts#L61), where Playwright has to channel the rendering from the test (Node.js) to the browser.
-- **Flexibility**. You can use Vitest for both unit tests, Node.js integration tests, and in-browser integration tests. In fact, Vitest makes that easy to do with the concept of workspaces, which you will get your hands on later in this workshop.
+- **Flexibility**. You can use Vitest for both unit tests, Node.js integration tests, and in-browser integration tests. In fact, Vitest makes that easy to do with the concept of projects, which you will get your hands on later in this workshop.
 
 Alright, we've set the scene well. Now it's time you put Vitest Browser Mode to work in your tests. Let's go!

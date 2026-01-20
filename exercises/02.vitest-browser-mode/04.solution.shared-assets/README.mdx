@@ -32,7 +32,7 @@ Since we added this new file, we have to tell TypeScript how it should be handle
 	],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/providers/playwright"]
+		"types": ["vitest/globals", "@vitest/browser/context"]
 	}
 }
 ```
@@ -42,7 +42,7 @@ Now all that remains is to tell Vitest to use this file as the global setup for 
 In `vite.config.ts`, I will provide the path to this setup file as the value for the `setupFiles` property on the current browser instance:
 
 ```ts filename=vite.config.ts add=16
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'

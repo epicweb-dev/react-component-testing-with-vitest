@@ -8,6 +8,6 @@
 	"compilerOptions": {
 		"target": "esnext",
 		"module": "preserve",
-		"types": ["vitest/globals", "@vitest/browser/providers/playwright"]
+		"types": ["vitest/globals", "@vitest/browser/context"]
 	}
 }

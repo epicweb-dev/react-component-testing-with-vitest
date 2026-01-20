@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
@@ -10,7 +10,7 @@ export default defineConfig({
 		port: process.env.PORT ? Number(process.env.PORT) : undefined,
 	},
 	test: {
-		workspace: [
+		projects: [
 			{
 				test: {
 					name: 'unit',

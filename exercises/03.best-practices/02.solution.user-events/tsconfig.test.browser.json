@@ -7,6 +7,6 @@
 	],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/providers/playwright"]
+		"types": ["vitest/globals", "@vitest/browser/context"]
 	}
 }

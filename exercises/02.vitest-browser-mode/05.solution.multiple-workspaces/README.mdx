@@ -1,21 +1,21 @@
-# Multiple workspaces
+# Multiple projects
 
 <EpicVideo url="https://www.epicweb.dev/workshops/react-component-testing-with-vitest/vitest-browser-mode/multiple-workspaces/solution" />
 
 Real-world projects often combine multiple types of tests at the same time. Vitest is a great choice for both unit and integration tests, but those two have quite different requirements and, as a result, may need different setups.
 
-Vitest solves this by using _workspaces_.
+Vitest solves this by using _projects_.
 
-## Vitest Workspaces
+## Vitest Projects
 
-A [workspace](https://main.vitest.dev/guide/workspace.html) allows you to describe multiple configurations independently. Think of it as a package workspace, where a single repo can host multiple different packages. In the same way, a single Vitest process can run multiple different test projects.
+A [project](https://vitest.dev/guide/projects.html) allows you to describe multiple configurations independently. Think of it as a package workspace, where a single repo can host multiple different packages. In the same way, a single Vitest process can run multiple different test projects.
 
-Workspaces are listed in the `test.workspace` property in your Vitest config, and can include paths to nested packages or Vitest config files or inline configuration.
+Projects are listed in the `test.projects` property in your Vitest config, and can include paths to nested packages or Vitest config files or inline configuration.
 
-I will define two workspaces:
+I will define two projects:
 
 ```ts filename=vite.config.ts add=12-18,21-36
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
@@ -24,7 +24,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
 	test: {
-		workspace: [
+		projects: [
 			{
 				test: {
 					name: 'unit',
@@ -59,7 +59,7 @@ export default defineConfig({
 
 Let's go over them in more detail.
 
-The first workspace include the configuration for running unit tests:
+The first project includes the configuration for running unit tests:
 
 ```ts filename=vite.config.ts nonumber
 {
@@ -73,14 +73,14 @@ The first workspace include the configuration for running unit tests:
 },
 ```
 
-- `name` gives this workspace a name and allows me to run it in isolation anytime I want by providing the `--project=unit` option to the Vitest CLI;
+- `name` gives this project a name and allows me to run it in isolation anytime I want by providing the `--project=unit` option to the Vitest CLI;
 - `include` lists the test file patterns to include in this run. In this case, I want for the unit tests to cover test files ending with `*.test.ts`;
 - `exclude` does the opposite of `include`, listing the file patterns to _ignore_. Since my browser tests also end with `*.test.ts`, I need to exclude them not to be confused with unit tests;
-- `environment` controls the test environment used for this workspace. I want my unit tests to run in Node.js, so I provide `'node'` as the enivornment here.
+- `environment` controls the test environment used for this project. I want my unit tests to run in Node.js, so I provide `'node'` as the enivornment here.
 
-> :owl: Notice that each workspace lists Vitest configuration starting from the root by including the `test` key again. This is handy because each workspace can have a different set of Vite options and `plugins` for different test files.
+> :owl: Notice that each project lists Vitest configuration starting from the root by including the `test` key again. This is handy because each project can have a different set of Vite options and `plugins` for different test files.
 
-Similarly, here's the workspace for the browser (component) tests:
+Similarly, here's the project for the browser (component) tests:
 
 ```ts filename=vite.config.ts nonumber
 {
@@ -103,7 +103,7 @@ Similarly, here's the workspace for the browser (component) tests:
 },
 ```
 
-Here, I'm naming this workspace `'browser'` and configuring it to include only `*.browser.test.ts(x)` test files. These will be my component tests. For the rest of the configuration, I simply moved the existing `test.browser` configuration under this workspace and left it as-is.
+Here, I'm naming this project `'browser'` and configuring it to include only `*.browser.test.ts(x)` test files. These will be my component tests. For the rest of the configuration, I simply moved the existing `test.browser` configuration under this project and left it as-is.
 
 ## TypeScript
 
@@ -126,7 +126,7 @@ Let's start with the unit tests:
 }
 ```
 
-Similar to how I've configured Vitest workspaces to apply only to specific file patterns, I tell TypeScript to apply this configuration only to the `*.test.ts` files, excluding the browser tests at `*.browser.test.ts*`. The most important bit here is the `compilerOptions.types` property:
+Similar to how I've configured Vitest projects to apply only to specific file patterns, I tell TypeScript to apply this configuration only to the `*.test.ts` files, excluding the browser tests at `*.browser.test.ts*`. The most important bit here is the `compilerOptions.types` property:
 
 ```json filename=tsconfig.test.unit.json nonumber
 "types": ["node", "vitest/globals"]
@@ -150,7 +150,7 @@ Next, I rename the existing `tsconfig.test.json` to `tsconfig.test.browser.json`
 	],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/providers/playwright"]
+		"types": ["vitest/globals", "@vitest/browser/context"]
 	}
 }
 ```

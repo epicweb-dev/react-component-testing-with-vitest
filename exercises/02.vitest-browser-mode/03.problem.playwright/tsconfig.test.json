@@ -6,8 +6,8 @@
 		"types": [
 			"vitest/globals"
 
-			// 🐨 Add the Playwright browser provider types.
-			// 💰 "@vitest/browser/providers/playwright"
+			// 🐨 Add the Vitest browser context types.
+			// 💰 "@vitest/browser/context"
 		]
 	}
 }
