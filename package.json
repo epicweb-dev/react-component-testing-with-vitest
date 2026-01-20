@@ -42,9 +42,10 @@
   "devDependencies": {
     "@epic-web/config": "^1.18.3",
     "eslint": "^9.9.0",
+    "pkgmgr": "^1.1.1",
     "prettier": "^3.3.3",
     "typescript": "^5.7.3",
-    "pkgmgr": "^1.1.1"
+    "vitest": "^4.0.17"
   },
   "prettier": "@epic-web/config/prettier"
 }
