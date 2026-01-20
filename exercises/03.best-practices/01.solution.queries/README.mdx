@@ -39,10 +39,10 @@ A user would find this input by its _label text_ because they would see that it 
 />
 ```
 
-I can then select this input by using the `.getByLabelText()` method on the `page` object from `@vitest/browser/context`:
+I can then select this input by using the `.getByLabelText()` method on the `page` object from `vitest/browser`:
 
 ```ts filename=discount-code-form.browser.test.tsx highlight=3 nonumber
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 
 const discountInput = page.getByLabelText('Discount code')
 ```

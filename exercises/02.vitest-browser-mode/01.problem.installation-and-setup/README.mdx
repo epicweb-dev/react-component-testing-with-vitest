@@ -84,7 +84,7 @@ First, I will remove the `import '@testing-library/jest-dom/vitest'` import we p
 import '@testing-library/jest-dom/vitest'
 ```
 
-Finally, confirm that `tsconfig.test.json` includes `vitest/globals` and `@vitest/browser/context` in `compilerOptions.types`:
+Finally, confirm that `tsconfig.test.json` includes `vitest/globals` and `vitest/browser` in `compilerOptions.types`:
 
 ```json filename=tsconfig.test.json add=9
 {
@@ -92,7 +92,7 @@ Finally, confirm that `tsconfig.test.json` includes `vitest/globals` and `@vites
 	"include": ["src/**/*", "src/**/*.test.ts*"],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/context"]
+		"types": ["vitest/globals", "vitest/browser"]
 	}
 }
 ```
