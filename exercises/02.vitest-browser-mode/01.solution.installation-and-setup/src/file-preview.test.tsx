@@ -1,4 +1,3 @@
-import type '@vitest/browser/matchers'
 import { render, screen } from '@testing-library/react'
 import { FilePreview } from './file-preview'
 

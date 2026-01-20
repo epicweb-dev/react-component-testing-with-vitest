@@ -7,6 +7,6 @@
 	],
 	"exclude": [],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/context"]
+		"types": ["vitest/globals", "@vitest/browser/context", "@vitest/browser/matchers"]
 	}
 }

@@ -42,7 +42,7 @@ export default defineConfig({
 })
 ```
 
-And, finally, let's add the Vitest browser context types in `tsconfig.test.json`:
+And, finally, let's add the Vitest browser context and matcher types in `tsconfig.test.json`:
 
 ```json filename=tsconfig.test.json remove=9 add=10
 {
@@ -53,7 +53,8 @@ And, finally, let's add the Vitest browser context types in `tsconfig.test.json`
 		"module": "preserve",
 		"types": [
 			"vitest/globals",
-			"@vitest/browser/context"
+			"@vitest/browser/context",
+			"@vitest/browser/matchers"
 		]
 	}
 }

@@ -1,4 +1,3 @@
-import type '@vitest/browser/matchers'
 import { page } from '@vitest/browser/context'
 import { render } from 'vitest-browser-react'
 import { TicTacToe } from './tic-tac-toe'

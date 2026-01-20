@@ -4,10 +4,9 @@
 	"exclude": [],
 	"compilerOptions": {
 		"types": [
-			"vitest/globals"
-
-			// 🐨 Add the Vitest browser context types.
-			// 💰 "@vitest/browser/context"
+			"vitest/globals",
+			"@vitest/browser/context",
+			"@vitest/browser/matchers"
 		]
 	}
 }

@@ -23,6 +23,6 @@ In this workshop, we will be using Playwright as the browser provider for Vitest
 
 1. Install `playwright` and `@vitest/browser-playwright` as dependencies in the project;
 1. In <InlineFile file="vite.config.ts">`vite.config.ts`</InlineFile>, import `playwright` from `@vitest/browser-playwright` and set `test.browser.provider` to `playwright()`;
-1. In <InlineFile file="tsconfig.test.json">`tsconfig.test.json`</InlineFile>, update the `compilerOptions.types` to include the Vitest browser context types (these also provide the matcher typings).
+1. In <InlineFile file="tsconfig.test.json">`tsconfig.test.json`</InlineFile>, update the `compilerOptions.types` to include the Vitest browser context and matcher types.
 
 Once you are done with it, make sure that the tests are still passing by running `npm test`. Good luck!
