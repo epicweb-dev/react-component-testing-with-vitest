@@ -16,12 +16,30 @@ npm remove @vitest/browser
 
 ### Imports
 
-You should now import the `page` object directly from the `vitest` package (its `/browser` export):
+You can now import the `page` object directly from the `vitest` package (its `/browser` export):
 
 ```ts remove=1 add=2 nocopy
 -import { page } from '@vitest/browser/context'
 +import { page } from 'vitest/browser'
 ```
+
+### Matcher types
+
+With the `@vitest/browser` package gone, there is nowhere to reference the matcher types from in your TypeScript configuration for tests. Luckily, that is no longer needed in Vitest 4.0!
+
+Remove the `@vitest/browser/matchers` type references from your TypeScript:
+
+```json filename=tsconfig.test.json remove=5
+{
+  "compilerOptions": {
+    "types": [
+      "vitest/globals",
+      "@vitest/browser/matchers"
+    ]
+  }
+}
+```
+
 
 ### Providers
 
