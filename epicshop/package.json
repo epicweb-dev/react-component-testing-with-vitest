@@ -1,5 +1,8 @@
 {
   "type": "module",
+  "scripts": {
+    "postinstall": "node ./patch-workshop-app-router-noise.js"
+  },
   "dependencies": {
     "@epic-web/workshop-app": "^6.90.3",
     "@epic-web/workshop-utils": "^6.90.3",
