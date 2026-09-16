@@ -1,4 +1,4 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { http, HttpResponse } from 'msw'
 // 🐨 Import the `test` function from `test-extend`.
@@ -8,7 +8,7 @@ import { http, HttpResponse } from 'msw'
 import { DiscountCodeForm } from './discount-code-form'
 
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -38,7 +38,7 @@ test('displays a warning for legacy discount codes', async ({
 	// 💰 http.post(predicate, resolver)
 	// 💰 HttpResponse.json({ code, amount, isLegacy })
 
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('LEGA2000')
@@ -70,7 +70,7 @@ test('displays an error when fetching the discount fails', async ({
 	// 💰 http.post(predicate, resolver)
 	// 💰 new HttpResponse(null, { status: 500 })
 
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('CODE1234')

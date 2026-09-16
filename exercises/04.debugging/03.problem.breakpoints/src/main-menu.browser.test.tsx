@@ -1,10 +1,10 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { MemoryRouter } from 'react-router'
 import { MainMenu } from './main-menu'
 
 test('renders the currently active menu link', async () => {
-	render(<MainMenu />, {
+	await render(<MainMenu />, {
 		wrapper({ children }) {
 			return (
 				<MemoryRouter initialEntries={['/dashboard/analytics']}>

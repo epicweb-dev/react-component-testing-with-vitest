@@ -17,12 +17,12 @@ npm uninstall jsdom @testing-library/react @testing-library/jest-dom
 Now I can install the dependencies required for the Browser Mode in Vitest:
 
 ```sh nonumber
-npm i -D @vitest/browser vitest-browser-react
+npm i -D @vitest/browser-preview vitest-browser-react
 ```
 
 Let's break down what these packages do:
 
-- [`@vitest/browser`](https://www.npmjs.com/package/@vitest/browser) enables the browser mode and provides the bindings to interact with the underlying browser;
+- [`@vitest/browser-preview`](https://www.npmjs.com/package/@vitest/browser-preview) is a _browser provider_ that runs your tests in a browser already installed on your machine. It is the quickest way to get started, and you will replace it with a proper provider later in this workshop;
 - [`vitest-browser-react`](https://www.npmjs.com/package/vitest-browser-react) provisions rendering of React components (similar to `@testing-library/react`);
 
 The installation step is done, and now it's time to configure Vitest is it can run my component tests in the actual browser.
@@ -32,7 +32,7 @@ The installation step is done, and now it's time to configure Vitest is it can r
 To enable the Browser Mode in Vitest, I need to set `test.browser.enabled` to `true` in my `vite.config.ts`/`vitest.config.ts`:
 
 ```ts filename=vite.config.ts remove=10 add=11-13
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -49,11 +49,12 @@ export default defineConfig({
 })
 ```
 
-As the next step, I need to tell Vitest what browsers I want for testing my components. Let's use Chromium by setting the `test.browser.instances` correctly:
+As the next step, I need to tell Vitest which browser provider to use and what browsers I want for testing my components. Let's start with the `preview` provider and Chromium by setting `test.browser.provider` and `test.browser.instances`:
 
-```ts filename=vite.config.ts add=11-15
-/// <reference types="vitest" />
+```ts filename=vite.config.ts add=3,12-17
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { preview } from '@vitest/browser-preview'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -62,6 +63,7 @@ export default defineConfig({
 	test: {
 		browser: {
 			enabled: true,
+			provider: preview(),
 			instances: [
 				{
 					browser: 'chromium',
@@ -76,7 +78,7 @@ export default defineConfig({
 
 ## Configure TypeScript
 
-The last thing that remains is to extend the TypeScript configuration to recognize DOM-specific matches, like `expect().toBeVisible()` as they come built-in in Vitest.
+The last thing that remains is to extend the TypeScript configuration to recognize DOM-specific matchers, like `expect().toBeVisible()`, as they come built-in in Vitest Browser Mode.
 
 First, I will remove the `import '@testing-library/jest-dom/vitest'` import we previously had in the test:
 
@@ -84,7 +86,7 @@ First, I will remove the `import '@testing-library/jest-dom/vitest'` import we p
 import '@testing-library/jest-dom/vitest'
 ```
 
-And replace it with a type reference to Vitest's browser matchers in `tsconfig.test.json`:
+And replace it with a type reference to Vitest's browser types in `tsconfig.test.json`:
 
 ```json filename=tsconfig.test.json add=9
 {
@@ -95,10 +97,12 @@ And replace it with a type reference to Vitest's browser matchers in `tsconfig.t
 		"types": [
 			"vitest/globals",
 			// 👇
-			"@vitest/browser/matchers"
+			"vitest/browser"
 		]
 	}
 }
 ```
+
+> 🦉 The `vitest/browser` types include the `page` and `userEvent` context as well as all the DOM matchers, like `.toBeVisible()`. You get them automatically in any test that imports from `vitest/browser`, but listing them in `types` makes them available everywhere.
 
 And with that, the installation step is done!

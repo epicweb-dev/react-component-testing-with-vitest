@@ -1,9 +1,9 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { DiscountCodeForm } from './discount-code-form'
 
 test('renders the discount form', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	// 🐨 Create a variable called `discountInput` and assign it
 	// the result of locating the element by label text "Discount code".

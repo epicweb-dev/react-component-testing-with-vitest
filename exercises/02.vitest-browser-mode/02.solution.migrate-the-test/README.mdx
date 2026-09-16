@@ -15,14 +15,14 @@ import { render } from 'vitest-browser-react'
 
 Much like React Testing Library, Vitest provides different bindings for rendering components from different frameworks, like `vitest-browser-react`, `vitest-browser-vue`, or `vitest-browser-svelte`.
 
-Usage-wise, both `render()` functions are identical, where Vitest's version supports a subset of the render `options` compared to RTL. This means that the render call itself stays the same:
+Usage-wise, both `render()` functions are nearly identical, where Vitest's version supports a subset of the render `options` compared to RTL. The one notable difference is that rendering in the browser is _asynchronous_, so I have to `await` the `render()` call:
 
 ```tsx filename=file-preview.test.tsx highlight=5
 import { render } from 'vitest-browser-react'
 import { FilePreview } from './file-preview.tsx'
 
-test('displays the preview card', () => {
-  render(<FilePreview file={...} />)
+test('displays the preview card', async () => {
+  await render(<FilePreview file={...} />)
 })
 ```
 
@@ -30,15 +30,15 @@ test('displays the preview card', () => {
 
 ## Element locators
 
-Previously, I used the `screen` object from RTL to find elements in the virtual DOM. When using Vitest Browser Mode, I can now locate elements (and interact with them) using the `page` object from `@vitest/browser/context` instead:
+Previously, I used the `screen` object from RTL to find elements in the virtual DOM. When using Vitest Browser Mode, I can now locate elements (and interact with them) using the `page` object from `vitest/browser` instead:
 
 ```tsx filename=file-preview.test.tsx add=1 highlight=8-9
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { FilePreview } from './file-preview.tsx'
 
-test('displays the preview card', () => {
-  render(<FilePreview file={...} />)
+test('displays the preview card', async () => {
+  await render(<FilePreview file={...} />)
 
   // Find an element with the text content of "file.txt".
   page.getByText('file.txt')

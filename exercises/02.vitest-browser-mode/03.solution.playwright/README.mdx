@@ -2,10 +2,10 @@
 
 <EpicVideo url="https://www.epicweb.dev/workshops/react-component-testing-with-vitest/vitest-browser-mode/playwright/solution" />
 
-Let's start by installing `playwright`:
+Let's start by installing `playwright` and the Playwright provider for Vitest:
 
 ```sh nonumber
-npm i -D playwright
+npm i -D playwright @vitest/browser-playwright
 ```
 
 Playwright needs browser executables to be present on your machine to run. In this workshop, I am using Chromium as my browser of choice, so I can install just that particular browser by running the following command:
@@ -16,11 +16,13 @@ npx playwright install --with-deps chromium
 
 > 🦉 You can provide the Playwright CLI with a specific browser you want to be installed. This reduces its footprint in the system by fetching only the browsers you need.
 
-The next step is to tell Vitest to use Playwright as the browser provider for component tests. In `vite.config.ts`, set the `test.browser.provider` option to `'playwright'`:
+The next step is to tell Vitest to use Playwright as the browser provider for component tests. In `vite.config.ts`, import the `playwright` provider from `@vitest/browser-playwright` and set it as the value of the `test.browser.provider` option:
 
-```ts filename=vite.config.ts add=12
-/// <reference types="vitest" />
+```ts filename=vite.config.ts remove=3 add=4,13
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { preview } from '@vitest/browser-preview'
+import { playwright } from '@vitest/browser-playwright'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -30,7 +32,7 @@ export default defineConfig({
 		globals: true,
 		browser: {
 			enabled: true,
-			provider: 'playwright',
+			provider: playwright(),
 			instances: [
 				{
 					browser: 'chromium',
@@ -41,22 +43,10 @@ export default defineConfig({
 })
 ```
 
-And, finally, let's update the type definitions for the assertion matchers to be those from Playwright in `tsconfig.test.json`:
+> 🦉 Browser providers are _functions_. This is where you pass any provider-specific options, like `launchOptions` or `contextOptions` for Playwright. Since the provider package brings its own type definitions, the locators, user events, and matchers in your tests are correctly typed without any extra TypeScript configuration.
 
-```json filename=tsconfig.test.json remove=9 add=10
-{
-	"extends": "./tsconfig.base.json",
-	"include": ["**/*.test.ts*"],
-	"compilerOptions": {
-		"target": "esnext",
-		"module": "preserve",
-		"types": [
-			"vitest/globals",
-			"@vitest/browser/matchers",
-			"@vitest/browser/providers/playwright"
-		]
-	}
-}
+Finally, I can remove the `preview` provider since I won't be needing it anymore:
+
+```sh nonumber
+npm uninstall @vitest/browser-preview
 ```
-
-This will make sure that the locators, user events, and matchers are correctly typed.

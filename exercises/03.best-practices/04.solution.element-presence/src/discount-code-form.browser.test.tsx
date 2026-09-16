@@ -1,11 +1,11 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { http, HttpResponse } from 'msw'
 import { test } from '../test-extend'
 import { DiscountCodeForm, type Discount } from './discount-code-form'
 
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -36,7 +36,7 @@ test('displays a warning for legacy discount codes', async ({ worker }) => {
 		),
 	)
 
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('LEGA2000')
@@ -66,7 +66,7 @@ test('displays an error when fetching the discount fails', async ({
 		),
 	)
 
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('CODE1234')
@@ -82,7 +82,7 @@ test('displays an error when fetching the discount fails', async ({
 })
 
 test('removes the applied discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')

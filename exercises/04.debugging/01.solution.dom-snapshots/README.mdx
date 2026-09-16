@@ -33,7 +33,7 @@ The rightmost mark is missing! But how? The test is clearly marking the left mid
 Luckily, I can observe the full state of the rendered DOM at any point in time using the `debug()` utility returned from `render()`:
 
 ```tsx filename=tic-tac-toe.browser.test.tsx add=1,7
-const { debug } = render(<TicTacToe />)
+const { debug } = await render(<TicTacToe />)
 
 await page.getByRole('button', { name: 'left middle' }).click()
 await page.getByRole('button', { name: 'middle', exact: true }).click()

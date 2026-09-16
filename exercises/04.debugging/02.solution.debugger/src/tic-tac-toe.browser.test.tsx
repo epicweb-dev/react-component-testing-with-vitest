@@ -1,9 +1,9 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { TicTacToe } from './tic-tac-toe'
 
 test('places cross marks in a horizontal line', async () => {
-	render(<TicTacToe />)
+	await render(<TicTacToe />)
 
 	await page.getByRole('button', { name: 'left middle' }).click()
 	debugger

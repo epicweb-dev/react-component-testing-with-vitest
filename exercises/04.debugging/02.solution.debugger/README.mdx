@@ -6,7 +6,7 @@ Using the debugger allows me to step through my test wherever and whenever I nee
 
 ```tsx filename=tic-tac-toe.browser.test.tsx nonumber nocopy highlight=5,8,11
 test('places cross marks in a horizontal line', async () => {
-	render(<TicTacToe />)
+	await render(<TicTacToe />)
 
 	await page.getByRole('button', { name: 'left middle' }).click()
 	debugger

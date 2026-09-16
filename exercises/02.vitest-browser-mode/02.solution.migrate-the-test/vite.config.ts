@@ -1,5 +1,6 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { preview } from '@vitest/browser-preview'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -12,6 +13,7 @@ export default defineConfig({
 		globals: true,
 		browser: {
 			enabled: true,
+			provider: preview(),
 			instances: [
 				{
 					browser: 'chromium',

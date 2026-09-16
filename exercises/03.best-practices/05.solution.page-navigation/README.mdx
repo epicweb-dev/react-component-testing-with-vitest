@@ -23,7 +23,7 @@ The `wrapper` here is a regular React component that wraps any provided children
 Now, I will provide this component as the `wrapper` property on individual `render()` calls in my tests:
 
 ```tsx filename=discount-code-form.browser.test.tsx add=2
-render(<DiscountCodeForm />, {
+await render(<DiscountCodeForm />, {
 	wrapper,
 })
 ```
@@ -48,7 +48,7 @@ As usual, I will render our component and provide it with the custom `wrapper`:
 
 ```tsx filename=discount-code-form.browser.test.tsx add=2
 test('displays the "Back to cart" link', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 })
 ```
 
@@ -56,7 +56,7 @@ Next, let's find the link element on the page by its role and accessible name:
 
 ```tsx filename=discount-code-form.browser.test.tsx add=4
 test('displays the "Back to cart" link', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const backToCartLink = page.getByRole('link', { name: 'Back to cart' })
 })
@@ -66,7 +66,7 @@ Next, I will add a quick assertion that this link is visible:
 
 ```tsx filename=discount-code-form.browser.test.tsx add=5
 test('displays the "Back to cart" link', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const backToCartLink = page.getByRole('link', { name: 'Back to cart' })
 	await expect.element(backToCartLink).toBeVisible()
@@ -79,7 +79,7 @@ This is the moment where the user would click on the link and land on the cart p
 
 ```tsx filename=discount-code-form.browser.test.tsx add=5
 test('displays the "Back to cart" link', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const backToCartLink = page.getByRole('link', { name: 'Back to cart' })
 	await expect.element(backToCartLink).toHaveAttribute('href', '/cart')

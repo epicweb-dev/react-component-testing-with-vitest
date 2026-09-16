@@ -1,6 +1,6 @@
 // 💣 Remove the import from `@testing-library/react`. You won't need it anymore.
 import { render, screen } from '@testing-library/react'
-// 🐨 Import `page` from '@vitest/browser/context'
+// 🐨 Import `page` from 'vitest/browser'
 // 💰 import { foo } from 'bar'
 //
 // 🐨 Import `render` from 'vitest-browser-react'.
@@ -8,6 +8,8 @@ import { render, screen } from '@testing-library/react'
 import { FilePreview } from './file-preview'
 
 test('displays the preview card', async () => {
+	// 🐨 Rendering in the browser is asynchronous. Await the `render()` call.
+	// 💰 await render(<MyComponent />)
 	render(<FilePreview file={new File(['hello world'], 'file.txt')} />)
 
 	// 🐨 Replace `expect()` with `await expect.element()`.

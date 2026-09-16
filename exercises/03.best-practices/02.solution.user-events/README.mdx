@@ -26,7 +26,7 @@ Then, I am going to remove the following visibility assertion:
 
 ```tsx filename=discount-code-form.browser.test.tsx remove=5 nocopy
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await expect.element(discountInput).toBeVisible()
@@ -40,7 +40,7 @@ To actually enter the discount code into the input, I will use the `.fill()` met
 
 ```tsx filename=discount-code-form.browser.test.tsx add=5 nocopy
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -54,7 +54,7 @@ As above, I will drop the redundant visibility assertion from the `applyDiscount
 
 ```tsx filename=discount-code-form.browser.test.tsx remove=10 add=11 nocopy
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -85,7 +85,7 @@ Finally, when the code has been successfully applied, I expect this paragraph to
 
 ```tsx filename=discount-code-form.browser.test.tsx add=13-15 nocopy
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -106,10 +106,10 @@ This completes the test! 🎉
 
 ## Locator methods vs `userEvent`
 
-If you used React Testing Library in the past, you've likely been interacting with your components via the `userEvent` object from `@testing-library/user-event`. Vitest provides you a similar object from the `@vitest/browser/context` package:
+If you used React Testing Library in the past, you've likely been interacting with your components via the `userEvent` object from `@testing-library/user-event`. Vitest provides you a similar object from the `vitest/browser` package:
 
 ```tsx nonumber highlight=1,7
-import { userEvent } from '@vitest/browser/context',
+import { userEvent } from 'vitest/browser',
 
 test('applies a discount code', async () => {
 	const applyDiscountButton = page.getByRole('button', {

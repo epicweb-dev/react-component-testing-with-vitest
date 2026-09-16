@@ -6,7 +6,7 @@ Let's prepare our `<DiscountCodeForm />` for this test case by doing the followi
 
 ```tsx filename=discount-code-form.test.browser.tsx nonumber highlight=5-6,9-12,15-16
 test('removes the applied discount code', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	// Enter a discount code.
 	const discountInput = page.getByLabelText('Discount code')

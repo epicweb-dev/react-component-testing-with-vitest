@@ -26,7 +26,7 @@
     "format": "prettier --write .",
     "typecheck": "tsc -b",
     "validate:all": "npm-run-all --parallel --print-label --print-name --continue-on-error test:all lint typecheck",
-    "clean": "rm -rf ./exercises/**/__screenshots__ && rm -f ./exercises/**/*.tsbuildinfo"
+    "clean": "rm -rf ./exercises/**/__screenshots__ ./exercises/**/.vitest && rm -f ./exercises/**/*.tsbuildinfo"
   },
   "keywords": [],
   "author": "Artem Zakharchenko <kettanaito@gmail.com> (https://kettanaito.com/)",

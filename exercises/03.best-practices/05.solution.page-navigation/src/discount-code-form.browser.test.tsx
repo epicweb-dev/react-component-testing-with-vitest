@@ -1,4 +1,4 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { http, HttpResponse } from 'msw'
 import { MemoryRouter } from 'react-router'
@@ -12,7 +12,7 @@ const wrapper: React.JSXElementConstructor<{
 }
 
 test('applies a discount code', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -43,7 +43,7 @@ test('displays a warning for legacy discount codes', async ({ worker }) => {
 		),
 	)
 
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('LEGA2000')
@@ -73,7 +73,7 @@ test('displays an error when fetching the discount fails', async ({
 		),
 	)
 
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('CODE1234')
@@ -89,7 +89,7 @@ test('displays an error when fetching the discount fails', async ({
 })
 
 test('removes the applied discount code', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -111,7 +111,7 @@ test('removes the applied discount code', async () => {
 })
 
 test('displays the "Back to cart" link', async () => {
-	render(<DiscountCodeForm />, { wrapper })
+	await render(<DiscountCodeForm />, { wrapper })
 
 	const backToCartLink = page.getByRole('link', { name: 'Back to cart' })
 	await expect.element(backToCartLink).toHaveAttribute('href', '/cart')

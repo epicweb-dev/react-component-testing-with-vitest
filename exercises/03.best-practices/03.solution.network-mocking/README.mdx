@@ -38,7 +38,7 @@ test('displays a warning for legacy discount codes', async ({ worker }) => {
 		),
 	)
 
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 ```
 
 > Here, I am using a [request handler override](https://mswjs.io/docs/best-practices/network-behavior-overrides) by giving a new set of request handlers to `worker.use()`. These overrides will take priority over the happy-path handlers I have in `src/mocks/handlers.ts`.
@@ -81,7 +81,7 @@ test('displays an error when fetching the discount fails', async ({
 		}),
 	)
 
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 ```
 
 This makes any attempts to apply a discount code in this test to be met with a server error. Since that's the case, I can model my expectations accordingly once the form is submitted.

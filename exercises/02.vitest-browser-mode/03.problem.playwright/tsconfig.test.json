@@ -3,13 +3,6 @@
 	"include": ["src/**/*", "src/**/*.test.ts*"],
 	"exclude": [],
 	"compilerOptions": {
-		"types": [
-			"vitest/globals",
-			// 💣 Remove the default browser matcher types.
-			"@vitest/browser/matchers"
-
-			// 🐨 Instead, include the matcher types from Playwright.
-			// 💰 "@vitest/browser/providers/playwright"
-		]
+		"types": ["vitest/globals", "vitest/browser"]
 	}
 }

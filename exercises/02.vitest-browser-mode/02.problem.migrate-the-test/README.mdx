@@ -4,6 +4,6 @@
 
 Since you are migrating your test from running in Node.js to running in the browser, some changes have to be made to your test suites for that to work. Luckily, these changes aren't dramatic, and mostly involve importing the same things from different packages.
 
-> 🦉 The biggest change when adopting Vitest Browser Mode is that it splits the rendering and the UI selection/interaction between two separate packages: `@vitest/browser` and a framework-specific renderer package, like `vitest-browser-react`.
+> 🦉 The biggest change when adopting Vitest Browser Mode is that it splits the rendering and the UI selection/interaction between two separate modules: the `vitest/browser` export of Vitest itself (for locating and interacting with elements) and a framework-specific renderer package, like `vitest-browser-react`.
 
 👨‍💼 In this exercise, your task is to complete the migration of the `file-review.test.tsx` test suite to Vitest Browser Mode. Follow the instructions in that file and check the test is passing at the end by calling `npm test`.

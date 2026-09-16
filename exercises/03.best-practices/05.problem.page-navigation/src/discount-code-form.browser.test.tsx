@@ -1,4 +1,4 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { http, HttpResponse } from 'msw'
 import { test } from '../test-extend'
@@ -13,8 +13,8 @@ import { DiscountCodeForm, type Discount } from './discount-code-form'
 
 test('applies a discount code', async () => {
 	// 🐨 Provide the `wrapper` in the render options.
-	// 💰 render(<Component />, { wrapper })
-	render(<DiscountCodeForm />)
+	// 💰 await render(<Component />, { wrapper })
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -46,7 +46,7 @@ test('displays a warning for legacy discount codes', async ({ worker }) => {
 	)
 
 	// 🐨 Provide the `wrapper` for this render.
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('LEGA2000')
@@ -77,7 +77,7 @@ test('displays an error when fetching the discount fails', async ({
 	)
 
 	// 🐨 Provide the `wrapper` for this render.
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('CODE1234')
@@ -94,7 +94,7 @@ test('displays an error when fetching the discount fails', async ({
 
 test('removes the applied discount code', async () => {
 	// 🐨 Provide the `wrapper` for this render.
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await discountInput.fill('EPIC2025')
@@ -117,7 +117,7 @@ test('removes the applied discount code', async () => {
 
 test('displays the "Back to cart" link', async () => {
 	// 🐨 Provide the `wrapper` for this render.
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	// 🐨 Declare a new variable called `backToCartLink` and
 	// assign it a locator of the element with the role "link"

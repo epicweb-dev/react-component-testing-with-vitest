@@ -9,7 +9,7 @@ Our Vitest is configured and running, but if you take a closer look at the teste
 Well, that's because it has no styles! The CSS file that contains the styles for this component is imported all the way in `main.tsx`, which isn't rendered as a part of this test:
 
 ```tsx filename=file-preview.test.tsx nonumber
-render(<FilePreview file={...} />)
+await render(<FilePreview file={...} />)
 ```
 
 That's quite an oversight. Styling is important, not only to see the UI as the user would see it, but also because improper styles can lead to inaccessible elements in the DOM.

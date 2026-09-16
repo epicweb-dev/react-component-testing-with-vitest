@@ -1,9 +1,9 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { DiscountCodeForm } from './discount-code-form'
 
 test('renders the discount form', async () => {
-	render(<DiscountCodeForm />)
+	await render(<DiscountCodeForm />)
 
 	const discountInput = page.getByLabelText('Discount code')
 	await expect.element(discountInput).toBeVisible()
