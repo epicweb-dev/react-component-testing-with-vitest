@@ -88,6 +88,27 @@ Learn all about the workshop app on the
 
 [![Kent with the workshop app in the background](https://github-production-user-asset-6210df.s3.amazonaws.com/1500684/280407082-0e012138-e01d-45d5-abf2-86ffe5d03c69.png)](https://www.epicweb.dev/get-started)
 
+## Troubleshooting
+
+### `Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'epicshop'`
+
+**Reason:** You likely have `ignore-scripts=true` in your `.npmrc`, which skips
+the `postinstall` script that installs the workshop app.
+
+**Solution:** Remove `ignore-scripts=true` from your `~/.npmrc` and run the
+setup command again.
+
+### `Could not locate workshop-app directory`
+
+**Reason:** You ran `npx epicshop start`, which uses the globally installed
+`epicshop` CLI that cannot find the workshop app.
+
+**Solution:** Either one of the following:
+
+- Run `npm start` in the workshop directory instead;
+- Install the workshop app globally with
+  `npm install -g @epic-web/workshop-app` and run the `epicshop start` command again.
+
 <!-- prettier-ignore-start -->
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
