@@ -18,7 +18,7 @@ npx playwright install --with-deps chromium
 
 The next step is to tell Vitest to use Playwright as the browser provider for component tests. In `vite.config.ts`, import the `playwright` provider from `@vitest/browser-playwright` and set it as the value of the `test.browser.provider` option:
 
-```ts filename=vite.config.ts remove=3 add=4,13
+```ts filename=vite.config.ts remove=3 add=4,14
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import { preview } from '@vitest/browser-preview'
